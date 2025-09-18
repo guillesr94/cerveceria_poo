@@ -1,10 +1,10 @@
 package org.example;
 
+
 import javax.swing.*;
 
 public class Mesa {
   JButton mesa;
-
 
   public Mesa() {
     mesa = new JButton("1");
@@ -33,4 +33,5 @@ public class Mesa {
   public JButton getBoton() {
     return mesa;
   }
+
 }
