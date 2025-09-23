@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.example;
+package Views;
 
 /**
  *
@@ -43,7 +43,14 @@ public class Pedidos extends javax.swing.JFrame {
         SubtotalLabel = new javax.swing.JLabel();
         SubtotalEdit = new javax.swing.JTextField();
         CancelarPedido = new javax.swing.JButton();
-        GestionMesa = new javax.swing.JButton();
+        GestionMesaButton = new javax.swing.JButton();
+        DiscountEdit = new javax.swing.JTextField();
+        DiscountLabel = new javax.swing.JLabel();
+        CoceptEdit = new javax.swing.JTextField();
+        ConceptLabel = new javax.swing.JLabel();
+        totalEdit = new javax.swing.JTextField();
+        TotalLabel = new javax.swing.JLabel();
+        GestionMenuButton = new javax.swing.JToggleButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,12 +82,26 @@ public class Pedidos extends javax.swing.JFrame {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
-                "Prodcuto", "Categoria", "Precio", "Cantidad", "Mesa"
+                "Producto", "Categoria", "Precio", "Cantidad", "Mesa"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(PedidoTabla);
 
         ConfirmPedido.setText("Confirmar Pedido");
@@ -98,7 +119,15 @@ public class Pedidos extends javax.swing.JFrame {
 
         CancelarPedido.setText("Cancelar Pedido");
 
-        GestionMesa.setText("Gestion Mesas");
+        GestionMesaButton.setText("Gestion Mesas");
+
+        DiscountLabel.setText("Descuento(en %):");
+
+        ConceptLabel.setText("Concepto Descuento:");
+
+        TotalLabel.setText("Total:");
+
+        GestionMenuButton.setText("Gestion Menu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,20 +148,37 @@ public class Pedidos extends javax.swing.JFrame {
                                 .addComponent(CantidadLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(35, 35, 35)
                                 .addComponent(CantidadEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(SubtotalLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(DiscountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(CancelarPedido)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(66, 66, 66)
+                                                    .addComponent(TotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(33, 33, 33)
+                                                    .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(ConceptLabel)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(CoceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(DiscountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
+                        .addGap(75, 75, 75)
                         .addComponent(ConfirmPedido)
-                        .addGap(60, 60, 60)
+                        .addGap(127, 127, 127)
                         .addComponent(ModificarPedido))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
-                        .addComponent(SubtotalLabel)
-                        .addGap(32, 32, 32)
-                        .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(164, 164, 164)
-                        .addComponent(CancelarPedido))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(139, 139, 139)
                         .addComponent(jButton1))
@@ -141,18 +187,22 @@ public class Pedidos extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(99, 99, 99)
-                        .addComponent(SelectorProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(GestionMesa)
-                        .addGap(339, 339, 339)))
-                .addContainerGap(10, Short.MAX_VALUE))
+                        .addComponent(SelectorProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(GestionMesaButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(GestionMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(GestionMesa)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(GestionMesaButton)
+                    .addComponent(GestionMenuButton))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -172,14 +222,24 @@ public class Pedidos extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubtotalLabel)
-                    .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DiscountLabel)
+                    .addComponent(DiscountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ConfirmPedido)
-                    .addComponent(ModificarPedido))
-                .addGap(28, 28, 28)
+                    .addComponent(CoceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ConceptLabel))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TotalLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ModificarPedido)
+                    .addComponent(ConfirmPedido))
+                .addGap(44, 44, 44)
                 .addComponent(CancelarPedido)
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addGap(56, 56, 56))
         );
 
         pack();
@@ -228,8 +288,13 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JButton CancelarPedido;
     private javax.swing.JTextField CantidadEdit;
     private javax.swing.JLabel CantidadLabel;
+    private javax.swing.JTextField CoceptEdit;
+    private javax.swing.JLabel ConceptLabel;
     private javax.swing.JButton ConfirmPedido;
-    private javax.swing.JButton GestionMesa;
+    private javax.swing.JTextField DiscountEdit;
+    private javax.swing.JLabel DiscountLabel;
+    private javax.swing.JToggleButton GestionMenuButton;
+    private javax.swing.JButton GestionMesaButton;
     private javax.swing.JList<String> ListaProd;
     private javax.swing.JTextField MesaEdit;
     private javax.swing.JLabel MesaLabel;
@@ -238,10 +303,12 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> SelectorProductos;
     private javax.swing.JTextField SubtotalEdit;
     private javax.swing.JLabel SubtotalLabel;
+    private javax.swing.JLabel TotalLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField totalEdit;
     // End of variables declaration//GEN-END:variables
 }
