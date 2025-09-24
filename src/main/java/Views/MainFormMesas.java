@@ -14,12 +14,13 @@ public class MainFormMesas extends javax.swing.JFrame {
 
     private Mesa mesa1,mesa2,mesa3,mesa4;
     public MainFormMesas() {
+       
         initComponents();
-        
-        mesa1=new Mesa("1",Mesa1Button);
-        mesa2=new Mesa("2",Mesa2Button);
-        mesa3=new Mesa("3",Mesa3Button);
-        mesa4=new Mesa("4",Mesa4Button);
+         setLocationRelativeTo(null);
+        mesa1=new Mesa(" 1",Mesa1Button);
+        mesa2=new Mesa(" 2",Mesa2Button);
+        mesa3=new Mesa(" 3",Mesa3Button);
+        mesa4=new Mesa(" 4",Mesa4Button);
         
         mesa1.agregarProducto("Asado");
         mesa2.agregarProducto("Pizza");
@@ -65,14 +66,19 @@ public class MainFormMesas extends javax.swing.JFrame {
                 GestonMenuButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(GestonMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
+        getContentPane().add(GestonMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
 
         PedidosButton.setText("Pedidos");
-        getContentPane().add(PedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 110, -1));
+        PedidosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PedidosButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(PedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 110, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Mesas");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,6 +90,16 @@ public class MainFormMesas extends javax.swing.JFrame {
        ventanaGestionMenu.setVisible(true);
        this.setVisible(false); 
     }//GEN-LAST:event_GestonMenuButtonActionPerformed
+
+    private void PedidosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedidosButtonActionPerformed
+     Pedidos ventanaPedidos= new Pedidos();
+     ventanaPedidos.pack();
+     ventanaPedidos.setLocationRelativeTo(this);
+     ventanaPedidos.setVisible(true);
+     this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_PedidosButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,11 +127,12 @@ public class MainFormMesas extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFormMesas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+ 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFormMesas().setVisible(true);
+                
             }
         });
     }

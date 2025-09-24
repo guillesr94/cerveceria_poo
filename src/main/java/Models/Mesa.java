@@ -31,13 +31,16 @@ private List<String>platos;
   private void mostrarPedido(){
  if(platos.isEmpty()){
    JOptionPane.showMessageDialog(null,
-    "Mesa"+numero+"no tiene ´productos.")       ; 
+    "Mesa"+ numero +" no tiene pedidos")    ; 
      
  }else{
      String MesaText="Mesa"+numero+":\n";
      for(String p :platos){
        MesaText=MesaText+"-"+p+"\n";  
-         
+     }
+     JOptionPane.showMessageDialog(
+     null,MesaText
+     );    
      }
      
  }
@@ -48,4 +51,3 @@ private List<String>platos;
   
   
   
-}

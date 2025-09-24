@@ -50,9 +50,9 @@
               <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="GestionMesaButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="GestionMenuButton" min="-2" pref="111" max="-2" attributes="0"/>
+                      <Component id="GestionMesaButton" min="-2" pref="120" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                      <Component id="GestionMenuButton" min="-2" pref="133" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -77,21 +77,33 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="ConfirmPedido" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="TotalLabel" alignment="0" min="-2" pref="37" max="-2" attributes="0"/>
-                                  <Component id="ConceptLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="DiscountLabel" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
                                   <Component id="SubtotalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="DiscountLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="ConceptLabel" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="TotalLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="CoceptEdit" pref="114" max="32767" attributes="0"/>
-                                  <Component id="ModificarPedido" min="-2" max="-2" attributes="0"/>
-                                  <Component id="DiscountEdit" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="totalEdit" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="SubtotalEdit" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                                      <Component id="ModificarPedido" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <Component id="CancelarPedido" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="totalEdit" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="CoceptEdit" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="DiscountEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="SubtotalEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                              <Component id="CancelarPedido" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
