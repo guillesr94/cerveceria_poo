@@ -4,6 +4,8 @@
  */
 package Views;
 import Models.Mesa;
+
+
 /**
  *
  * @author victo
@@ -23,8 +25,6 @@ public class MainFormMesas extends javax.swing.JFrame {
         mesa2.agregarProducto("Pizza");
         
         mesa2.agregarProducto("Helado");
-        
-        
     }
 
     /**
@@ -40,9 +40,9 @@ public class MainFormMesas extends javax.swing.JFrame {
         Mesa2Button = new javax.swing.JButton();
         Mesa3Button = new javax.swing.JButton();
         Mesa4Button = new javax.swing.JButton();
-        GestionMesasLabel = new javax.swing.JLabel();
         GestonMenuButton = new javax.swing.JButton();
         PedidosButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -59,17 +59,31 @@ public class MainFormMesas extends javax.swing.JFrame {
         Mesa4Button.setText("Mesa 4");
         getContentPane().add(Mesa4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, 60));
 
-        GestionMesasLabel.setText("Gestion de Mesas");
-        getContentPane().add(GestionMesasLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, 110, -1));
-
         GestonMenuButton.setText("Gestion Menu");
-        getContentPane().add(GestonMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+        GestonMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GestonMenuButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(GestonMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, -1, -1));
 
         PedidosButton.setText("Pedidos");
-        getContentPane().add(PedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 110, -1));
+        getContentPane().add(PedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 110, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setText("Mesas");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void GestonMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestonMenuButtonActionPerformed
+       GestionMenu ventanaGestionMenu = new GestionMenu();
+       ventanaGestionMenu.pack();
+       ventanaGestionMenu.setLocationRelativeTo(this);
+       ventanaGestionMenu.setVisible(true);
+       this.setVisible(false); 
+    }//GEN-LAST:event_GestonMenuButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,12 +121,12 @@ public class MainFormMesas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel GestionMesasLabel;
     private javax.swing.JButton GestonMenuButton;
     private javax.swing.JButton Mesa1Button;
     private javax.swing.JButton Mesa2Button;
     private javax.swing.JButton Mesa3Button;
     private javax.swing.JButton Mesa4Button;
     private javax.swing.JButton PedidosButton;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
