@@ -44,6 +44,12 @@ public class MainFormMesas extends javax.swing.JFrame {
         GestonMenuButton = new javax.swing.JButton();
         PedidosButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 25), new java.awt.Dimension(0, 25), new java.awt.Dimension(32767, 25));
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 25), new java.awt.Dimension(0, 25), new java.awt.Dimension(32767, 25));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,7 +64,7 @@ public class MainFormMesas extends javax.swing.JFrame {
         getContentPane().add(Mesa3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, 60));
 
         Mesa4Button.setText("Mesa 4");
-        getContentPane().add(Mesa4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, 60));
+        getContentPane().add(Mesa4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, 60));
 
         GestonMenuButton.setText("Gestion Menu");
         GestonMenuButton.addActionListener(new java.awt.event.ActionListener() {
@@ -79,6 +85,12 @@ public class MainFormMesas extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Mesas");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+        getContentPane().add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+        getContentPane().add(filler2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+        getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
+        getContentPane().add(filler4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
+        getContentPane().add(filler5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+        getContentPane().add(filler6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -144,6 +156,12 @@ public class MainFormMesas extends javax.swing.JFrame {
     private javax.swing.JButton Mesa3Button;
     private javax.swing.JButton Mesa4Button;
     private javax.swing.JButton PedidosButton;
+    private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler2;
+    private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
     private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
