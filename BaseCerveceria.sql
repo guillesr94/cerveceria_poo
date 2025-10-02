@@ -10,7 +10,7 @@ numeroMesa INT NOT NULL UNIQUE,
 
 
 
-Create table if not exists Menu(
+Create table if not exists Producto(
 idProducto int auto_increment  primary key,
 nombreProducto varchar(80),
 categoria varchar(100),

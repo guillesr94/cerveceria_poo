@@ -13,7 +13,7 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="productos")
+@Table(name="Producto")
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,5 +56,3 @@ public class Producto {
     
     
 }
-
-
