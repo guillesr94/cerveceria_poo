@@ -8,6 +8,7 @@ package Entities;
 import Models.Mesa;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -32,12 +33,23 @@ public class PedidoMesa {
   @JoinColumn(name="idMesa")
  private Mesa mesa;
 
-  */ 
+  */
+  @Column(name="IdMesa")
+  private int idMesa;
+  
    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetallePedido> detalles ; 
   
     public int getIdPedido() {
         return idPedido;
+    }
+
+    public int getIdMesa() {
+        return idMesa;
+    }
+
+    public void setIdMesa(int idMesa) {
+        this.idMesa = idMesa;
     }
 
     public void setIdPedido(int idPedido) {

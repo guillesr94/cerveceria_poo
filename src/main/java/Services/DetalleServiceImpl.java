@@ -13,7 +13,7 @@ import Models.DetallePedidoDaoImpl;
  *
  * @author victo
  */
-public abstract class DetalleServiceImpl implements ServicesInterface<DetallePedido> {
+public class DetalleServiceImpl implements ServicesInterface<DetallePedido> {
 private DetallePedidoDao dao;
 
 public DetalleServiceImpl(){

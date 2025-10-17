@@ -15,6 +15,7 @@ public class Pedidos extends javax.swing.JFrame {
      */
     public Pedidos() {
         initComponents();
+        
     }
 
     /**
@@ -30,7 +31,7 @@ public class Pedidos extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         MesaLabel = new javax.swing.JLabel();
         MesaEdit = new javax.swing.JTextField();
-        SelectorProductos = new javax.swing.JComboBox<>();
+        SelectorCategoria = new javax.swing.JComboBox<>();
         CantidadLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaProd = new javax.swing.JList<>();
@@ -70,7 +71,7 @@ public class Pedidos extends javax.swing.JFrame {
 
         MesaLabel.setText("Mesa:");
 
-        SelectorProductos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Categoria" }));
+        SelectorCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Categoria" }));
 
         CantidadLabel.setText("Cantidad :");
 
@@ -158,7 +159,7 @@ public class Pedidos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                                .addComponent(SelectorProductos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(SelectorCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(CantidadLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(CantidadEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -221,7 +222,7 @@ public class Pedidos extends javax.swing.JFrame {
                     .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(MesaLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SelectorProductos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(SelectorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -330,7 +331,7 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JLabel MesaLabel;
     private javax.swing.JButton ModificarPedido;
     private javax.swing.JTable PedidoTabla;
-    private javax.swing.JComboBox<String> SelectorProductos;
+    private javax.swing.JComboBox<String> SelectorCategoria;
     private javax.swing.JTextField SubtotalEdit;
     private javax.swing.JLabel SubtotalLabel;
     private javax.swing.JLabel TotalLabel;
