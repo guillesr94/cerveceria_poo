@@ -4,6 +4,7 @@
  */
 package Entities;
 
+
 import Models.Mesa;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -27,10 +28,11 @@ public class PedidoMesa {
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private int idPedido;
 
-  @ManyToOne
+/*  @ManyToOne
   @JoinColumn(name="idMesa")
-  private Mesa mesa;
-  
+ private Mesa mesa;
+
+  */ 
    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetallePedido> detalles ; 
   
@@ -41,7 +43,7 @@ public class PedidoMesa {
     public void setIdPedido(int idPedido) {
         this.idPedido = idPedido;
     }
-
+/*
     public Mesa getMesa() {
         return mesa;
     }
@@ -49,7 +51,7 @@ public class PedidoMesa {
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
     }
-
+*/
     public List<DetallePedido> getDetalles() {
         return detalles;
     }

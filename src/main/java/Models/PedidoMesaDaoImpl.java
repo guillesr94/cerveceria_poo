@@ -26,7 +26,7 @@ private EntityManager em;
 private static PedidoMesaDaoImpl instance ;
 
 private PedidoMesaDaoImpl() {
-    emf=Persistence.createEntityManagerFactory("PM");
+    emf=Persistence.createEntityManagerFactory("poo_cerveceriaPU");
     em=emf.createEntityManager();
 }
  public static PedidoMesaDaoImpl getInstance() {

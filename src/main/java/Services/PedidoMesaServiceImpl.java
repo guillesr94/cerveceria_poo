@@ -24,7 +24,7 @@ public abstract class PedidoMesaServiceImpl implements ServicesInterface<PedidoM
         
     }
 
-    @Override
+   /* @Override
     public void save(PedidoMesa Pedido) throws Exception {
   if(Pedido.getMesa()!=null){
       dao.save(Pedido);
@@ -32,7 +32,7 @@ public abstract class PedidoMesaServiceImpl implements ServicesInterface<PedidoM
       throw new Exception("Debe seleccionarse una mesa antes de guardar el pedido");
   }
     }
-
+*/
     @Override
     public PedidoMesa GetbyId(int id) throws Exception {
 return dao.getById(id);
