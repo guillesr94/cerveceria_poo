@@ -14,7 +14,7 @@ public class Main{
     public static void main(String[]args){
         
         
-           ProductoDao dao = ProductoDaoImpl.getInstance();
+        ProductoDao dao = ProductoDaoImpl.getInstance();
 
         // Crear un producto
         Producto pe = new Producto();
