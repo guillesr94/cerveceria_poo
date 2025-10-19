@@ -7,25 +7,27 @@ idMesa Int auto_increment primary key,
 numeroMesa INT NOT NULL UNIQUE,
     capacidad INT NOT NULL  
 );
+ 
+ CREATE TABLE if not exists Categoria(
+  idCategoria INT AUTO_INCREMENT PRIMARY KEY,
+  Categoria VARCHAR(100) UNIQUE NOT NULL
+);
 
 
-
-Create table if not exists Menu(
+Create table if not exists Producto(
 idProducto int auto_increment  primary key,
 nombreProducto varchar(80),
-categoria varchar(100),
-precio DECIMAL(10,2)
-
-
+idCategoria int,
+precio DECIMAL(10,2),
+FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria)
 );
 
 create table if not exists PedidoXMesa(
 idPedido int auto_increment primary key ,
 idMesa int,
 idProducto int,
-cantidad int NOT NULL DEFAULT 1,
 FOREIGN KEY (idMesa) REFERENCES Mesa(idMesa),
-FOREIGN KEY (idProducto) REFERENCES Menu(idProducto)
+FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
 
 );
 
@@ -33,8 +35,9 @@ create table if not exists DetallexPedido(
 idDetalle int auto_increment primary key ,
 idPedido int,
 cantidad int not null,
-FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido),
-FOREIGN KEY (idProducto) REFERENCES Menu(idProducto)
+idProducto int,
+FOREIGN KEY (idPedido) REFERENCES PedidoXMesa(idPedido),
+FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
 
 );
 
@@ -45,4 +48,3 @@ create table if not exists CuentaXMesa (
     total DECIMAL(10,2),
    FOREIGN KEY (idMesa) REFERENCES Mesa(idMesa)
 );
-
