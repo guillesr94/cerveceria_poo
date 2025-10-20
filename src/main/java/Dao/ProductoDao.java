@@ -14,8 +14,7 @@ import java.util.List;
  */
 public interface ProductoDao extends Dao<Producto>{
     List<Producto> getByNombre(String nombre) throws DaoException;
-
-  
+   List<Producto>getByCategoria(int IdCategoria )throws DaoException;
 }
 /*
 public interface PersonaDao extends Dao<Persona>{

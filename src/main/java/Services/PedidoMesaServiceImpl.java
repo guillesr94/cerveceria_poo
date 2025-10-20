@@ -12,7 +12,7 @@ import Models.PedidoMesaDaoImpl;
  *
  * @author victo
  */
-public abstract class PedidoMesaServiceImpl implements ServicesInterface<PedidoMesa> {
+public  class PedidoMesaServiceImpl implements ServicesInterface<PedidoMesa> {
     private PedidoMesaDao dao;
     
     /**
@@ -57,6 +57,11 @@ return dao.getById(id);
     }else{
         throw new Exception("No existe pedido con ese id:"+id);
     }
+    }
+
+    @Override
+    public void save(PedidoMesa entity) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

@@ -59,7 +59,7 @@ public class CategoriaProductoDaoImpl implements CategoriaProductoDao {
     @Override
     public List<CategoriaProducto> getAll() throws DaoException {
         try {
-            Query q = em.createQuery("SELECT c FROM Categoria c");
+            Query q = em.createQuery("SELECT c FROM CategoriaProducto c");
             return q.getResultList();
         } catch (Exception e) {
             throw new DaoException("Error al obtener todas las categorías: " + e.getMessage());

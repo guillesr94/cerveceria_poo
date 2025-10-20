@@ -33,7 +33,7 @@ public class Main{
         }
 
         // Listar todos los productos
-        System.out.println("\nListado de productos:");
+        System.out.println("Listado de productos:");
         try {
             List<Producto> productos = dao.getAll();
             for (Producto p : productos) {
@@ -43,7 +43,7 @@ public class Main{
             System.err.println("Error listando productos: " + e.getMessage());
             e.printStackTrace();
         }
-    
+   
         
         java.awt.EventQueue.invokeLater(() -> {
             new MainFormMesas().setVisible(true);

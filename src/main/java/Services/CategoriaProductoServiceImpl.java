@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author victo
  */
-public abstract class CategoriaProductoServiceImpl implements ServicesInterface<CategoriaProducto> {
+public class CategoriaProductoServiceImpl implements ServicesInterface<CategoriaProducto> {
 private  CategoriaProductoDao dao;
     
 public CategoriaProductoServiceImpl(){
@@ -22,7 +22,7 @@ public CategoriaProductoServiceImpl(){
     @Override
     public void save(CategoriaProducto categoria) throws Exception {
         if(categoria.getCategoria()==null){
-            throw new Exception("Elnombre de la categoria no puede estar vacio");
+            throw new Exception("El nombre de la categoria no puede estar vacio");
         }
     dao.save(categoria);
     }

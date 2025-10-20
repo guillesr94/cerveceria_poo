@@ -38,9 +38,13 @@ public class ProductoDaoImpl implements ProductoDao {
 
     @Override
     public List<Producto> getByNombre(String nombre) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try{
+   return em.createQuery("Select p FROM Producto p WHERE p.nombre LIKE :nombre",Producto.class)
+    .setParameter("nombre","%"+nombre+"%").getResultList();
+           }catch(Exception e){
+               throw new DaoException("Error al obtener los productos por nombre",e);
+           }
     }
-
     @Override
     public void save(Producto data) throws DaoException {
         try {
@@ -49,17 +53,22 @@ public class ProductoDaoImpl implements ProductoDao {
         em.getTransaction().commit();
     } catch (Exception e) {
         em.getTransaction().rollback();
-        throw new DaoException("Error al guardar producto", e);
+        throw new DaoException("Error al guardar producto",e);
     }
     }
 
     @Override
     public Producto getById(int id) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        try{
+        return em.find(Producto.class,id);
+        }catch(Exception e){
+        throw new  DaoException("Error al traer producto por id");
+}
 
+    
+                }
     @Override
-public List<Producto> getAll() throws DaoException {
+    public List<Producto> getAll() throws DaoException {
     try {
         return em.createQuery("SELECT p FROM Producto p", Producto.class).getResultList();
     } catch (Exception e) {
@@ -69,17 +78,56 @@ public List<Producto> getAll() throws DaoException {
 
     @Override
     public void update(Producto data) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    try{
+        em.getTransaction().begin();
+        em.merge(data);
+        em.getTransaction().commit();}
+        catch(Exception e){
+            throw new DaoException("Error al actualizar Producto"+e.getMessage());
+        }  
+
     }
+         
+    
 
     @Override
-    public void delete(Producto data) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void delete(Producto data) throws DaoException {  
+         try{
+    em.getTransaction().begin();
+        Producto producto;
+             producto = em.find(Producto.class,data.getId());
+        if(producto!=null){
+            em.remove(producto);
+        }
+        em.getTransaction().commit();
+         }catch(Exception e){
+            em.getTransaction().rollback();
+            
+         }
+
+       }
+
+    @Override
+    public List<Producto> getByCategoria(int IdCategoria) throws DaoException {
+       try{
+        return (List<Producto>) em.createQuery("SELECT idCategoria FROM Producto P WHERE p.Categoria =:idCategoria",
+                
+       Producto.class
+               ).setParameter("idCategoria", IdCategoria).getResultList();
+       }catch(Exception e){
+        throw new DaoException("No se pueden obtener los productos de la categoria",e);
+      
+          }          }
+    
+    
+    
+    
+   
     }
     
     
     
-}
+
 
 
 /*

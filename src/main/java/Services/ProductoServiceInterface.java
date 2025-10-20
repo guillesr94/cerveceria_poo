@@ -4,20 +4,17 @@
  */
 package Services;
 
-
+import Entities.Producto;
 import java.util.List;
 
 /**
  *
  * @author victo
  */
-public interface ServicesInterface<T> {
-    void save(T entity) throws Exception;
-    T GetbyId(int id) throws Exception;
-    List<T> List() throws Exception;
-    void update(T entity) throws Exception;
-    void delete(int id) throws Exception;
-   
-}
+public interface ProductoServiceInterface extends ServicesInterface<Producto> {
+    List GetbyCategoria(int idCategoria) throws Exception;
 
+ 
+        }
+    
 

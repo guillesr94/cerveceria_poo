@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Entities;
+
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,9 +25,9 @@ public class CategoriaProducto {
      @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCategoria;
-@OneToMany
-@JoinColumn(name="idProducto")
-private Producto producto;
+
+     @OneToMany
+private List <Producto>productos;
 
 @Column(name = "Categoria", nullable = false, unique = true, length = 100)
 private String Categoria;
@@ -38,22 +40,19 @@ private String Categoria;
         this.Categoria = Categoria;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public <List>Producto getProducto() {
+        return (Producto) productos;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setProducto(List<Producto> productos) {
+        this.productos = (List<Producto>) productos;
     }
-
-    private String categoria;
-
-
+   
     public CategoriaProducto() {}
 
 
     public CategoriaProducto(String categoria) {
-        this.categoria = categoria;
+        this.Categoria = categoria;
     }
 
     
@@ -69,6 +68,6 @@ private String Categoria;
 
   @Override
     public String toString() {
-        return categoria; 
+        return Categoria; 
     }
 }

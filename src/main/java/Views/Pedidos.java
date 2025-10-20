@@ -4,6 +4,8 @@
  */
 package Views;
 
+import Services.CategoriaProductoServiceImpl;
+
 /**
  *
  * @author victo
@@ -15,7 +17,7 @@ public class Pedidos extends javax.swing.JFrame {
      */
     public Pedidos() {
         initComponents();
-        
+        CargarCategorias();
     }
 
     /**
@@ -260,6 +262,35 @@ public class Pedidos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CargarCategorias(){
+     try{
+         CategoriaProductoServiceImpl categoriaService =new CategoriaProductoServiceImpl();
+         java.util.List<Entities.CategoriaProducto>categorias=categoriaService.List();
+         
+         SelectorCategoria.removeAllItems();
+         SelectorCategoria.addItem("Seleccione una Categoria");
+         for(Entities.CategoriaProducto cat: categorias){
+            SelectorCategoria.addItem(cat.getCategoria());
+         }
+         
+     }catch(Exception e) {
+         javax.swing.JOptionPane.showMessageDialog(this,
+                 "Error al cargar categorias :"+e.getMessage(),
+                 "Error",
+                 javax.swing.JOptionPane.ERROR_MESSAGE);
+         
+         
+         
+     }
+    }
+    
+    private void ProductosCategoria(){
+        
+        
+        
+        
+    }
+    
     private void SubtotalEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubtotalEditActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SubtotalEditActionPerformed
