@@ -19,7 +19,8 @@ idProducto int auto_increment  primary key,
 nombreProducto varchar(80),
 idCategoria int,
 precio DECIMAL(10,2),
-FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria)
+FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria),
+stock INT NOT NULL
 );
 
 create table if not exists PedidoXMesa(

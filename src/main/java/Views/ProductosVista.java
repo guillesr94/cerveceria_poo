@@ -6,7 +6,6 @@ package Views;
 
 import Entities.CategoriaProducto;
 import Entities.Producto;
-import static Entities.Producto_.nombre;
 import Services.CategoriaProductoServiceImpl;
 import Services.ProductoServicesImpl;
 import Services.ProductoServiceInterface;
