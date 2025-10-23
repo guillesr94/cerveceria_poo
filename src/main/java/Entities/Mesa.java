@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "mesas")
+@Table(name = "mesa")
 public class Mesa {
     
     @Id
@@ -36,7 +36,6 @@ public class Mesa {
         this.ocupada = false;
     }
 
-    // Getters and Setters remain the same
     public Long getId() {
         return id;
     }
