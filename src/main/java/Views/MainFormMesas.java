@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
-import Models.Mesa;
 
 
 /**
@@ -12,15 +11,15 @@ import Models.Mesa;
  */
 public class MainFormMesas extends javax.swing.JFrame {
 
-    private Mesa mesa1,mesa2,mesa3,mesa4;
+    private MesaUI mesa1,mesa2,mesa3,mesa4;
     public MainFormMesas() {
        
         initComponents();
          setLocationRelativeTo(null);
-        mesa1=new Mesa(" 1",Mesa1Button);
-        mesa2=new Mesa(" 2",Mesa2Button);
-        mesa3=new Mesa(" 3",Mesa3Button);
-        mesa4=new Mesa(" 4",Mesa4Button);
+        mesa1=new MesaUI(" 1",Mesa1Button);
+        mesa2=new MesaUI(" 2",Mesa2Button);
+        mesa3=new MesaUI(" 3",Mesa3Button);
+        mesa4=new MesaUI(" 4",Mesa4Button);
         
         mesa1.agregarProducto("Asado");
         mesa2.agregarProducto("Pizza");

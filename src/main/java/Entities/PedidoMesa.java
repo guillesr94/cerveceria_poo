@@ -5,7 +5,7 @@
 package Entities;
 
 
-import Models.Mesa;
+import Views.MesaUI;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

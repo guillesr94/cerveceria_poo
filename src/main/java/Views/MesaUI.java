@@ -1,16 +1,16 @@
-package Models;
+package Views;
 
 
 import javax.swing.*;
 import java.util.ArrayList;
   import java.util.List;
 
-public class Mesa {
+public class MesaUI {
   private JButton mesa;
 private String numero;
 private List<String>platos;
 
-  public Mesa(String numero, JButton mesa) {
+  public MesaUI(String numero, JButton mesa) {
     this.numero=numero;
     this.mesa=mesa;
     this.mesa.setText("Mesa"+numero);
@@ -48,6 +48,3 @@ private List<String>platos;
   
   
   }
-  
-  
-  
