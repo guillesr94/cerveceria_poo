@@ -44,6 +44,7 @@ public class GestionMenu extends javax.swing.JFrame {
         EliminarProductoButton = new javax.swing.JButton();
         MenuLabel = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +88,13 @@ public class GestionMenu extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Menu");
 
+        jButton1.setText("Productos");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GestionProductosButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,12 +120,13 @@ public class GestionMenu extends javax.swing.JFrame {
                                     .addComponent(NombreProductoEdit)
                                     .addComponent(CategoriaEdit)
                                     .addComponent(PrecioEdit)
-                                    .addComponent(BorrarEditsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE))
+                                    .addComponent(BorrarEditsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(GestionPedidosButton)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(36, 36, 36)
+                                .addComponent(jButton1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(239, 239, 239)
                         .addComponent(EliminarProductoButton, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
@@ -144,7 +153,8 @@ public class GestionMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GestionMesaButton)
-                    .addComponent(GestionPedidosButton))
+                    .addComponent(GestionPedidosButton)
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -193,6 +203,14 @@ public class GestionMenu extends javax.swing.JFrame {
     this.setVisible(false); 
       
     }//GEN-LAST:event_GestionMesaButtonActionPerformed
+
+    private void GestionProductosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionProductosButtonActionPerformed
+    ProductosVista ventanaProductos = new ProductosVista();
+    ventanaProductos.pack();
+    ventanaProductos.setLocationRelativeTo(this);
+    ventanaProductos.setVisible(true);
+    this.setVisible(false);
+    }//GEN-LAST:event_GestionProductosButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,6 +261,7 @@ public class GestionMenu extends javax.swing.JFrame {
     private javax.swing.JTextField NombreProductoEdit;
     private javax.swing.JTextField PrecioEdit;
     private javax.swing.JLabel PrecioLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
