@@ -4,8 +4,16 @@
  */
 package Views;
 
+import Entities.CategoriaProducto;
+import Entities.Producto;
+import static Entities.Producto_.nombre;
+import Services.CategoriaProductoServiceImpl;
 import Services.ProductoServicesImpl;
 import Services.ProductoServiceInterface;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,6 +21,7 @@ import Services.ProductoServiceInterface;
  */
 public class ProductosVista extends javax.swing.JFrame {
 
+    private CategoriaProductoServiceImpl categoriaProductoServiceImpl;
     private ProductoServiceInterface productoService;
     private ProductoServicesImpl productoServicesImpl;
     /**
@@ -21,7 +30,9 @@ public class ProductosVista extends javax.swing.JFrame {
     public ProductosVista() {
         initComponents();
         this.productoServicesImpl = new ProductoServicesImpl();
-   
+        this.categoriaProductoServiceImpl = new CategoriaProductoServiceImpl();
+        this.productoService = this.productoServicesImpl;
+        cargarCategorias();
     }
 
     /**
@@ -73,8 +84,6 @@ public class ProductosVista extends javax.swing.JFrame {
         jLabel2.setText("Precio");
 
         jLabel4.setText("Stock");
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,9 +164,17 @@ public class ProductosVista extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAgregarProducto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarProducto
-        String nombreProducto = textFieldProducto.getText();
         
-        javax.swing.JOptionPane.showMessageDialog(this, "Texto ingresado: " + nombreProducto);
+        
+        int stock = Integer.parseInt(textFieldStock.getText());
+        
+        Producto productoNuevo = agregarProducto();
+       
+        try {
+            productoService.save(productoNuevo);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonAgregarProducto
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
@@ -203,11 +220,41 @@ public class ProductosVista extends javax.swing.JFrame {
         });
     }
 
+    private Producto agregarProducto() throws NumberFormatException {
+        
+    String nombreProducto = textFieldProducto.getText();
+    float precio = Float.parseFloat(textfieldPrecio.getText());
+    int stock = Integer.parseInt(textFieldStock.getText());
+    
+    CategoriaProducto categoriaSeleccionada = (CategoriaProducto) jComboBox1.getSelectedItem();
+        return null;
+    }
+    
+    private void cargarCategorias() {
+    try {
+        // 1. Limpiar items de ejemplo
+        jComboBox1.removeAllItems(); 
+        
+        // 2. Pedir las categorías a TU servicio
+        List<CategoriaProducto> categorias = categoriaProductoServiceImpl.List(); // <-- ¡Llama a tu método List()!
+
+        // 3. Añadir CADA OBJETO al ComboBox
+        for (CategoriaProducto categoria : categorias) {
+            jComboBox1.addItem(categoria); // <-- Añades el OBJETO
+        }
+        
+    } catch (Exception e) {
+       JOptionPane.showMessageDialog(this, 
+                                    "Error fatal: No se pudieron cargar las categorías.", 
+                                    "Error", 
+                                    JOptionPane.ERROR_MESSAGE);
+    }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgregar;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonEliminar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<CategoriaProducto> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

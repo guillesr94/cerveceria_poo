@@ -26,18 +26,19 @@ public class CategoriaProducto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idCategoria;
 
-     @OneToMany
-private List <Producto>productos;
 
 @Column(name = "Categoria", nullable = false, unique = true, length = 100)
-private String Categoria;
+private String categoria;
+
+@OneToMany(mappedBy = "categoria") 
+    private List <Producto> productos;
 
     public String getCategoria() {
-        return Categoria;
+        return categoria;
     }
 
     public void setCategoria(String Categoria) {
-        this.Categoria = Categoria;
+        this.categoria = Categoria;
     }
 
     public <List>Producto getProducto() {
@@ -52,7 +53,7 @@ private String Categoria;
 
 
     public CategoriaProducto(String categoria) {
-        this.Categoria = categoria;
+        this.categoria = categoria;
     }
 
     
@@ -68,6 +69,6 @@ private String Categoria;
 
   @Override
     public String toString() {
-        return Categoria; 
+        return categoria; 
     }
 }

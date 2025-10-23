@@ -20,21 +20,43 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name="idCategoria")
-    private CategoriaProducto Categoria;
+    
+   @ManyToOne
+@JoinColumn(name="idCategoria")
+private CategoriaProducto categoria; 
     
     private String nombre;
     private float precio;
+    private int stock;
 
     public Producto() {
     }
 
-    public Producto(Long id, String nombre, float precio) {
+    public Producto(Long id, CategoriaProducto categoria, String nombre, float precio, int stock) {
         this.id = id;
+        this.categoria = categoria;
         this.nombre = nombre;
         this.precio = precio;
+        this.stock = stock;
     }
+
+    public CategoriaProducto getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaProducto Categoria) {
+        this.categoria = Categoria;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+   
 
     public Long getId() {
         return id;
