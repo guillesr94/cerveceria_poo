@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Entities;
+
 import javax.persistence.*;
 
 /**
@@ -13,17 +14,17 @@ import javax.persistence.*;
 @Entity
 @Table(name = "mesa")
 public class Mesa {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Column(nullable = false)
     private int numero;
-    
+
     @Column(nullable = false)
     private int capacidad;
-    
+
     @Column(nullable = false)
     private boolean ocupada;
 
