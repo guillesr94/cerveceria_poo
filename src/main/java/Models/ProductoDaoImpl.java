@@ -110,10 +110,10 @@ public class ProductoDaoImpl implements ProductoDao {
     @Override
     public List<Producto> getByCategoria(int IdCategoria) throws DaoException {
        try{
-        return (List<Producto>) em.createQuery("SELECT idCategoria FROM Producto p WHERE p.Categoria =:idCategoria",
-                
+        return  em.createQuery("SELECT p FROM Producto p WHERE p.categoria.idCategoria =:idCat",
+          
        Producto.class
-               ).setParameter("idCategoria",(long) IdCategoria).getResultList();
+               ).setParameter("idCat",IdCategoria).getResultList();
        }catch(Exception e){
         throw new DaoException("No se pueden obtener los productos de la categoria",e);
       

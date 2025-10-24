@@ -58,11 +58,10 @@
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
-                      <Component id="EliminarProductoButton" pref="198" max="32767" attributes="0"/>
+                      <Component id="EliminarProductoButton" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>

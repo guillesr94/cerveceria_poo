@@ -1,10 +1,17 @@
-/*
+/*<
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
 
+
+import Entities.Producto;
 import Services.CategoriaProductoServiceImpl;
+import Services.ProductoServicesImpl;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -18,8 +25,16 @@ public class Pedidos extends javax.swing.JFrame {
     public Pedidos() {
         initComponents();
         CargarCategorias();
+        SelectorCategoria.addActionListener(evt->{
+        String seleccion=(String)SelectorCategoria.getSelectedItem();
+        if(seleccion !=null &&!seleccion.equals("Seleccione Una categoria")){
+            
+          CargarProductos(seleccion);  
+            
+        }
+        }
+        );
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -272,8 +287,7 @@ public class Pedidos extends javax.swing.JFrame {
          for(Entities.CategoriaProducto cat: categorias){
             SelectorCategoria.addItem(cat.getCategoria());
          }
-         
-     }catch(Exception e) {
+      }catch(Exception e) {
          javax.swing.JOptionPane.showMessageDialog(this,
                  "Error al cargar categorias :"+e.getMessage(),
                  "Error",
@@ -282,14 +296,50 @@ public class Pedidos extends javax.swing.JFrame {
          
          
      }
+    } 
+    
+    
+private void CargarProductos(String Categoria){
+   try{
+    CategoriaProductoServiceImpl categoriaService= new CategoriaProductoServiceImpl();
+    List<Entities.CategoriaProducto>categorias=categoriaService.List();
+    Entities.CategoriaProducto categoriaSelec=categorias.stream().filter(c->c.getCategoria()
+            .equals(Categoria)).findFirst().orElse(null);
+            
+    if(categoriaSelec!=null){
+       ProductoServicesImpl ProductoServices=new ProductoServicesImpl();
+       List<Entities.Producto>productos=ProductoServices.GetbyCategoria(categoriaSelec.getIdCategoria());
+       DefaultListModel<String>modelo=new DefaultListModel<>();
+       for(Entities.Producto p:productos){
+           modelo.addElement(p.getNombre()+"-$"+p.getPrecio());
+       }
+       
+       ListaProd.setModel(modelo);
+       
+       
     }
     
-    private void ProductosCategoria(){
-        
-        
-        
-        
-    }
+   }catch(Exception e){
+    javax.swing.JOptionPane.showMessageDialog(
+    this,
+            "No se Encontro la categoria Seleccionada:"+e.getMessage(),
+            "Error",
+    javax.swing.JOptionPane.ERROR_MESSAGE
+    
+    );
+    
+    
+}
+}
+
+
+
+    
+    
+    
+
+
+    
     
     private void SubtotalEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubtotalEditActionPerformed
         // TODO add your handling code here:
