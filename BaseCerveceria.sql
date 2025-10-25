@@ -51,3 +51,5 @@ CREATE TABLE IF NOT EXISTS
     total DECIMAL(10, 2),
     FOREIGN KEY (idMesa) REFERENCES Mesa (idMesa)
   );
+
+ALTER TABLE Producto DROP COLUMN stock;
