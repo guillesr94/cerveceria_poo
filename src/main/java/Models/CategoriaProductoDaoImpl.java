@@ -24,7 +24,7 @@ public class CategoriaProductoDaoImpl implements CategoriaProductoDao {
     private EntityManager em;
 
     private CategoriaProductoDaoImpl() {
-        emf = Persistence.createEntityManagerFactory("poo_cerveceriaPU");
+        emf = Persistence.createEntityManagerFactory("Restaurante_PU");
         em = emf.createEntityManager();
     }
 

@@ -205,11 +205,11 @@ public class GestionMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_GestionMesaButtonActionPerformed
 
     private void GestionProductosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionProductosButtonActionPerformed
-   /* ProductosVista ventanaProductos = new ProductosVista();
+    ProductosVista ventanaProductos = new ProductosVista();
     ventanaProductos.pack();
     ventanaProductos.setLocationRelativeTo(this);
     ventanaProductos.setVisible(true);
-    this.setVisible(false);*/
+    this.setVisible(false);
     }//GEN-LAST:event_GestionProductosButtonActionPerformed
 
     /**

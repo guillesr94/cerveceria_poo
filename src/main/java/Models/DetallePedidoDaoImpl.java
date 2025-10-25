@@ -24,7 +24,7 @@ public class DetallePedidoDaoImpl implements DetallePedidoDao  {
 private static DetallePedidoDaoImpl instance;
     
 private DetallePedidoDaoImpl(){
-    emf=Persistence.createEntityManagerFactory("DP");
+    emf=Persistence.createEntityManagerFactory("Restaurante_PU");
     em=emf.createEntityManager();
     
 }

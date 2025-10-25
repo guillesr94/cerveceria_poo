@@ -17,7 +17,6 @@ public interface ServicesInterface<T> {
     List<T> List() throws Exception;
     void update(T entity) throws Exception;
     void delete(int id) throws Exception;
-   
 }
 
 

@@ -39,6 +39,12 @@ private CategoriaProducto categoria;
     public Producto() {
     }
 
+    public Producto( String nombre, float precio) {
+       
+        this.nombre = nombre;
+        this.precio = precio;
+    }
+
     public Producto(Long id, CategoriaProducto categoria, String nombre, float precio, int stock) {
         this.id = id;
         this.categoria = categoria;

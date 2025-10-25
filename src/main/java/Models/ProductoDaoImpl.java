@@ -18,13 +18,15 @@ import javax.persistence.Persistence;
  */
 public class ProductoDaoImpl implements ProductoDao {
 
-    private EntityManagerFactory emf;
+      
+     private EntityManagerFactory emf;
     private EntityManager em;
     
     private static ProductoDaoImpl instance;
     
-    private ProductoDaoImpl() {
-        emf = Persistence.createEntityManagerFactory("poo_cerveceriaPU");
+   private ProductoDaoImpl() {
+        // Mueve las dos líneas AQUÍ ADENTRO:
+        emf = Persistence.createEntityManagerFactory("Restaurante_PU"); // (Ojo que tu log decía "RestaurantePU" sin guion bajo)
         em = emf.createEntityManager();
     }
     
@@ -60,9 +62,9 @@ public class ProductoDaoImpl implements ProductoDao {
     @Override
     public Producto getById(int id) throws DaoException {
         try{
-        return em.find(Producto.class,id);
+        return em.find(Producto.class, (long) id);
         }catch(Exception e){
-        throw new  DaoException("Error al traer producto por id");
+        throw new DaoException("Error al traer producto por id", e);
 }
 
     
@@ -91,21 +93,32 @@ public class ProductoDaoImpl implements ProductoDao {
     
 
     @Override
-    public void delete(Producto data) throws DaoException {  
-         try{
-    em.getTransaction().begin();
-        Producto producto;
-             producto = em.find(Producto.class,data.getId());
-        if(producto!=null){
-            em.remove(producto);
-        }
-        em.getTransaction().commit();
-         }catch(Exception e){
-            em.getTransaction().rollback();
-            
-         }
+public void delete(Producto data) throws DaoException {
+    if (data == null) {
+         throw new DaoException("No se puede borrar un producto nulo");
+     }
 
+     try {
+         em.getTransaction().begin();
+         
+         // 1. Busca el producto usando el ID del objeto 'data'
+         Producto producto = em.find(Producto.class, data.getId()); 
+         
+         // 2. Si existe, bórralo
+         if (producto != null) {
+             em.remove(producto); 
+         }
+         
+         em.getTransaction().commit();
+     
+     } catch(Exception e) {
+         if (em.getTransaction().isActive()) {
+             em.getTransaction().rollback();
+         }
+         throw new DaoException("Error al borrar el producto", e);
+     }
        }
+
 
     @Override
     public List<Producto> getByCategoria(int IdCategoria) throws DaoException {

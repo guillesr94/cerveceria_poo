@@ -53,7 +53,8 @@ productoDao.save(Producto);
 
     @Override
     public void delete(int idProducto)throws Exception {
-    Producto p=productoDao.getById(idProducto);
+    Producto p = GetbyId(idProducto);
+    productoDao.delete(p);
     }
 
     @Override
