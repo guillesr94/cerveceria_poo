@@ -23,27 +23,27 @@ import javax.persistence.Table;
  * @author victo
  */
 @Entity
-@Table(name="PedidoXMesa")        
+@Table(name="Pedido")        
 public class PedidoMesa {
   @Id
   @GeneratedValue(strategy=GenerationType.IDENTITY)
   private int idPedido;
 
-/*  @ManyToOne
-  @JoinColumn(name="idMesa")
+ /* @ManyToOne
+  @JoinColumn(name="idMesa",nullable=true)
  private Mesa mesa;
 
-  */
+  
   @Column(name="IdMesa")
   private int idMesa;
-  
+  */
    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DetallePedido> detalles ; 
   
     public int getIdPedido() {
         return idPedido;
     }
-
+/*
     public int getIdMesa() {
         return idMesa;
     }
@@ -51,7 +51,7 @@ public class PedidoMesa {
     public void setIdMesa(int idMesa) {
         this.idMesa = idMesa;
     }
-
+*/
     public void setIdPedido(int idPedido) {
         this.idPedido = idPedido;
     }
@@ -62,8 +62,8 @@ public class PedidoMesa {
 
     public void setMesa(Mesa mesa) {
         this.mesa = mesa;
-    }
-*/
+    }*/
+
     public List<DetallePedido> getDetalles() {
         return detalles;
     }

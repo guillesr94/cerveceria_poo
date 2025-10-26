@@ -26,7 +26,7 @@ private EntityManager em;
 private static PedidoMesaDaoImpl instance ;
 
 private PedidoMesaDaoImpl() {
-    emf=Persistence.createEntityManagerFactory("Restaurante_PU");
+    emf=Persistence.createEntityManagerFactory("poo_cerveceriaPU");
     em=emf.createEntityManager();
 }
  public static PedidoMesaDaoImpl getInstance() {
@@ -62,7 +62,7 @@ em.getTransaction().begin();
     @Override
     public List<PedidoMesa> getAll() throws DaoException {
     try{
-        String query="SELECT p FROM PedidoXMesa";
+        String query="SELECT p FROM PedidoMesa p ";
     Query q=em.createQuery(query);
     return q.getResultList();
     }catch(Exception e){

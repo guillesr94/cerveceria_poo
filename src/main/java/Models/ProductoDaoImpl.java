@@ -26,7 +26,7 @@ public class ProductoDaoImpl implements ProductoDao {
     
    private ProductoDaoImpl() {
         // Mueve las dos líneas AQUÍ ADENTRO:
-        emf = Persistence.createEntityManagerFactory("Restaurante_PU"); // (Ojo que tu log decía "RestaurantePU" sin guion bajo)
+        emf = Persistence.createEntityManagerFactory("poo_cerveceriaPU"); // (Ojo que tu log decía "RestaurantePU" sin guion bajo)
         em = emf.createEntityManager();
     }
     

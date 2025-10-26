@@ -53,7 +53,7 @@ public class Pedidos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaProd = new javax.swing.JList<>();
         CantidadEdit = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        AgregarProductosButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         PedidoTabla = new javax.swing.JTable();
         ConfirmPedido = new javax.swing.JButton();
@@ -88,13 +88,20 @@ public class Pedidos extends javax.swing.JFrame {
 
         MesaLabel.setText("Mesa:");
 
+        MesaEdit.setEditable(false);
+
         SelectorCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Categoria" }));
 
         CantidadLabel.setText("Cantidad :");
 
         jScrollPane1.setViewportView(ListaProd);
 
-        jButton1.setText("Agregar Producto(s)");
+        AgregarProductosButton.setText("Agregar Producto(s)");
+        AgregarProductosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarProductosButtonActionPerformed(evt);
+            }
+        });
 
         PedidoTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,12 +188,25 @@ public class Pedidos extends javax.swing.JFrame {
                             .addComponent(CantidadEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(AgregarProductosButton)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(180, 180, 180)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(GestionMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(MesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(27, 27, 27)
+                                .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(ConfirmPedido)
                                     .addComponent(SubtotalLabel)
@@ -208,22 +228,12 @@ public class Pedidos extends javax.swing.JFrame {
                                             .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(CoceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(DiscountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(GestionMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +257,7 @@ public class Pedidos extends javax.swing.JFrame {
                     .addComponent(CantidadEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CantidadLabel))
                 .addGap(12, 12, 12)
-                .addComponent(jButton1)
+                .addComponent(AgregarProductosButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
@@ -361,6 +371,74 @@ private void CargarProductos(String Categoria){
        this.setVisible(false); 
     }//GEN-LAST:event_GestionMenuButtonActionPerformed
 
+    private void AgregarProductosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProductosButtonActionPerformed
+    String productoSelected=ListaProd.getSelectedValue();
+        String cantidadText=CantidadEdit.getText();
+    String mesaText=MesaEdit.getText();
+    String categoria=(String)SelectorCategoria.getSelectedItem();
+
+    int cantidad;
+    try{
+    cantidad=Integer.parseInt(cantidadText);
+    if(cantidad <=0)throw new NumberFormatException();
+    }catch(NumberFormatException ex){
+javax.swing.JOptionPane.showMessageDialog(this,"La cantidad debe ser positiva");
+return;
+    }
+    String[] division=productoSelected.split("-\\$");
+    String nombreP=division[0];
+    double precio=Double.parseDouble(division[1]);
+    double subtotal=precio*cantidad;
+    
+  String noTable;
+if(mesaText!=null && !mesaText.isEmpty()){
+noTable=mesaText;
+}else{
+noTable="Mesas Proximamente";
+
+}
+
+    javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+    model.insertRow(0,new Object[]{
+    nombreP,
+    categoria,
+    String.format("%.2f",precio),
+    cantidad,
+   noTable
+})
+  
+
+;
+CantidadEdit.setText("");
+       
+recalcularSubtotal();
+    }//GEN-LAST:event_AgregarProductosButtonActionPerformed
+
+private void recalcularSubtotal(){
+    javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+   double subtotal=0.0;
+   for(int i=0;i<model.getRowCount();i++){
+   Object precioObj=model.getValueAt(i,2);
+Object cantidadObj=model.getValueAt(i,3);
+if (precioObj == null || cantidadObj == null) continue;    
+
+  double precio = Double.parseDouble(precioObj.toString().replace(",", "."));
+    int cantidad=Integer.parseInt(cantidadObj.toString());
+    subtotal+=precio*cantidad;
+}
+
+SubtotalEdit.setText(String.format("%.2f", subtotal));
+   
+}
+
+ 
+
+
+
+   
+
+
+
     /**
      * @param args the command line arguments
      */
@@ -397,6 +475,7 @@ private void CargarProductos(String Categoria){
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarProductosButton;
     private javax.swing.JButton CancelarPedido;
     private javax.swing.JTextField CantidadEdit;
     private javax.swing.JLabel CantidadLabel;
@@ -416,7 +495,6 @@ private void CargarProductos(String Categoria){
     private javax.swing.JTextField SubtotalEdit;
     private javax.swing.JLabel SubtotalLabel;
     private javax.swing.JLabel TotalLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -424,4 +502,9 @@ private void CargarProductos(String Categoria){
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField totalEdit;
     // End of variables declaration//GEN-END:variables
+
+    
+    
+    
+    
 }

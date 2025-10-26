@@ -61,5 +61,7 @@ productoDao.save(Producto);
     public java.util.List GetbyCategoria(int idCategoria) throws Exception {
    return  productoDao.getByCategoria(idCategoria);
     }
+
+
     
 }
