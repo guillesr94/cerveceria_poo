@@ -11,9 +11,11 @@ import Services.ProductoServicesImpl;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
         
 
 
@@ -118,7 +120,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        MesaLabel.setText("Mesa:");
+        MesaLabel.setText("Mesa(proximamente):");
 
         MesaEdit.setEditable(false);
 
@@ -165,6 +167,11 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         ConfirmPedido.setText("Confirmar Pedido");
 
         EliminarProducto.setText("Eliminar Producto");
+        EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarProductoActionPerformed(evt);
+            }
+        });
 
         SubtotalLabel.setText("Subtotal:");
 
@@ -176,6 +183,11 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         });
 
         CancelarPedido.setText("Cancelar Pedido");
+        CancelarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarPedidoActionPerformed(evt);
+            }
+        });
 
         GestionMesaButton.setText("Gestion Mesas");
         GestionMesaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -234,11 +246,15 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
                                 .addGap(180, 180, 180)
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(54, 54, 54)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(GestionMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(MesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(27, 27, 27)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(54, 54, 54)
+                                        .addComponent(GestionMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(MesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
                                 .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -251,19 +267,16 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
                         .addComponent(ConceptLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(conceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(discountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(TotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
-                                .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(EliminarProducto)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(conceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(discountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(TotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(31, 31, 31)
+                            .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(EliminarProducto))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(ConfirmPedido)
@@ -450,6 +463,54 @@ CantidadEdit.setText("");
 recalcularSubtotal();
     }//GEN-LAST:event_AgregarProductosButtonActionPerformed
 
+    private void EliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductoActionPerformed
+     int selectRow=-1;
+     
+       selectRow=PedidoTabla.getSelectedRow();
+     
+         if (selectRow==-1){
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar");
+            return; 
+         }
+           try{
+              javax.swing.table.DefaultTableModel model=
+                      (javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+               
+              model.removeRow(selectRow);
+              
+               recalcularSubtotal();
+          
+     }catch(Exception e ){
+        javax.swing.JOptionPane.showMessageDialog(
+        this,
+              "Error al eliminar producto: " + e.getMessage()   
+        
+        );
+         
+     }
+      
+    }//GEN-LAST:event_EliminarProductoActionPerformed
+
+    private void CancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {                                               
+      
+
+           javax.swing.table.DefaultTableModel model=
+                   (javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+                           model.setRowCount(0);
+                           
+           SubtotalEdit.setText("0.00");
+        discountEdit.setText("");
+        conceptEdit.setText("");
+        totalEdit.setText("0.00");
+        CantidadEdit.setText("");
+        SelectorCategoria.setSelectedIndex(0);
+        ListaProd.clearSelection();
+           
+       } 
+        
+      
+    
+
 private void recalcularSubtotal(){
     javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
    double subtotal=0.0;
@@ -464,7 +525,7 @@ if (precioObj == null || cantidadObj == null) continue;
 }
 
 SubtotalEdit.setText(String.format("%.2f", subtotal));
-   
+ aplicarDescuento();   
 }
 
     private void aplicarDescuento() {
@@ -484,17 +545,29 @@ if(getDescuento!=null && !getDescuento.isEmpty() ){
 descuento=Double.parseDouble(getDescuento.replace(",","."));
     }                                                
 
-if(descuento<=0 || descuento>100){
+if(descuento<0 || descuento>100 ){
 conceptEdit.setText("Descuento no valido ");
 total=subtotal;
 }else{
     conceptEdit.setText("");
 total=subtotal-(subtotal*(descuento/100));
+
+if(descuento==0||getDescuento.isEmpty()){
+ conceptEdit.setText("No aplica descuento");
+total=subtotal   ;
+    
+}
+
 if(conceptEdit.getText().isEmpty()) 
 conceptEdit.setText(" varios ");
 
 
 }
+if(getDescuento.isEmpty()&& conceptEdit.getText().isEmpty()){
+  total=subtotal;  
+    
+}
+
 
 totalEdit.setText(String.format("%.2f", total));
 
