@@ -74,7 +74,11 @@
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="447" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
@@ -89,47 +93,48 @@
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="MesaEdit" min="-2" pref="136" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ConfirmPedido" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SubtotalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="DiscountLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="ConceptLabel" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="TotalLabel" min="-2" pref="37" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Component id="ModificarPedido" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="CancelarPedido" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="totalEdit" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="CoceptEdit" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="DiscountEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="SubtotalEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="447" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="SubtotalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="DiscountLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="ConceptLabel" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="conceptEdit" min="-2" pref="122" max="-2" attributes="0"/>
+                          <Component id="discountEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                          <Component id="SubtotalEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="TotalLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="totalEdit" min="-2" pref="122" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="EliminarProducto" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+              <Component id="ConfirmPedido" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="CancelarPedido" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -166,28 +171,29 @@
                   <Component id="SubtotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="SubtotalEdit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="DiscountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="DiscountEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="discountEdit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="CoceptEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="conceptEdit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ConceptLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="totalEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="EliminarProducto" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ConfirmPedido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ModificarPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CancelarPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ConfirmPedido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -308,9 +314,9 @@
         <Property name="text" type="java.lang.String" value="Confirmar Pedido"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="ModificarPedido">
+    <Component class="javax.swing.JButton" name="EliminarProducto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar Pedido"/>
+        <Property name="text" type="java.lang.String" value="Eliminar Producto"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="SubtotalLabel">
@@ -339,14 +345,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GestionMesaButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="DiscountEdit">
+    <Component class="javax.swing.JTextField" name="discountEdit">
     </Component>
     <Component class="javax.swing.JLabel" name="DiscountLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descuento(en %):"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CoceptEdit">
+    <Component class="javax.swing.JTextField" name="conceptEdit">
     </Component>
     <Component class="javax.swing.JLabel" name="ConceptLabel">
       <Properties>

@@ -1,7 +1,6 @@
 Create database if not exists Restaurante;
 use Restaurante;
-INSERT INTO Producto (nombreProducto, idCategoria, precio)
-VALUES ('Cerveza', 1, 500.00);
+
 
 create table if not exists Mesa(
 idMesa Int auto_increment primary key,
@@ -23,12 +22,14 @@ precio DECIMAL(10,2),
 FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria)
 );
 
-create table if not exists PedidoXMesa(
+create table if not exists Pedido(
 idPedido int auto_increment primary key ,
-idMesa int,
-idProducto int,
-FOREIGN KEY (idMesa) REFERENCES Mesa(idMesa),
-FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
+idMesa int Null,
+total decimal(10,2) ,
+Descuento float,
+ConceptoDescuento varchar(60),
+FOREIGN KEY (idMesa) REFERENCES Mesa(idMesa)
+
 
 );
 
@@ -37,7 +38,8 @@ idDetalle int auto_increment primary key ,
 idPedido int,
 cantidad int not null,
 idProducto int,
-FOREIGN KEY (idPedido) REFERENCES PedidoXMesa(idPedido),
+
+FOREIGN KEY (idPedido) REFERENCES Pedido(Pedido),
 FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
 
 );
