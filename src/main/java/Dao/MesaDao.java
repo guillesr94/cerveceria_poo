@@ -19,7 +19,7 @@ public interface MesaDao {
 
     void delete(Mesa mesa) throws DaoException;
 
-    Mesa getById(int id) throws DaoException;
+    Mesa getById(long id) throws DaoException;
 
     List<Mesa> getAll() throws DaoException;
 
