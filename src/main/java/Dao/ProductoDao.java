@@ -13,7 +13,7 @@ import java.util.List;
  * @author anto_guille
  */
 public interface ProductoDao extends Dao<Producto>{
-    List<Producto> getByNombre(String nombre) throws DaoException;
+    Producto getByNombre(String nombre) throws DaoException;
    List<Producto>getByCategoria(int IdCategoria )throws DaoException;
 }
 /*

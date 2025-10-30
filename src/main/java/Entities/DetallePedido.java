@@ -37,6 +37,13 @@ private Producto producto;
 @Column(nullable=false)
 private int cantidad;
 
+ public DetallePedido() {}
+
+    public DetallePedido(Producto producto, int cantidad) {
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
+
    public int getIdDetalle() {
         return idDetalle;
     }

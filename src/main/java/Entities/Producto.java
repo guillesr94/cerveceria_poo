@@ -28,7 +28,8 @@ public class Producto {
 private CategoriaProducto categoria; 
     
    @Column(name="nombreProducto")
-    private String nombre;
+    private String nombreProducto;
+   
    @Column(name="precio")
     private float precio;
   /* @Column(name="stock")
@@ -41,14 +42,14 @@ private CategoriaProducto categoria;
 
     public Producto( String nombre, float precio) {
        
-        this.nombre = nombre;
+        this.nombreProducto = nombre;
         this.precio = precio;
     }
 
     public Producto(Long id, CategoriaProducto categoria, String nombre, float precio, int stock) {
         this.id = id;
         this.categoria = categoria;
-        this.nombre = nombre;
+        this.nombreProducto = nombre;
         this.precio = precio;
     //    this.stock = stock;
     }
@@ -81,11 +82,11 @@ private CategoriaProducto categoria;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreProducto;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreProducto = nombre;
     }
 
     public float getPrecio() {
