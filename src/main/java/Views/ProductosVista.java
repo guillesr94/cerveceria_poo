@@ -155,23 +155,21 @@ public class ProductosVista extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(textFieldProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(156, 156, 156))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(textfieldPrecio)
-                                        .addGap(295, 295, 295))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, Short.MAX_VALUE)))
-                                        .addGap(132, 132, 132)))
+                                        .addGap(132, 132, 132))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(textfieldPrecio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(textFieldProducto, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttonEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(buttonAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -179,13 +177,11 @@ public class ProductosVista extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton1)
-                                .addGap(83, 83, 83)
-                                .addComponent(jButton2)))
-                        .addGap(190, 190, 190)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180)))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -243,7 +239,38 @@ public class ProductosVista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAgregarProducto
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-        // TODO add your handling code here:
+       try {
+            // 1. Leer los nuevos valores de los campos
+            String nombreProducto = textFieldProducto.getText();
+            float precio = Float.parseFloat(textfieldPrecio.getText());
+            CategoriaProducto catSeleccionada = (CategoriaProducto) jComboBox1.getSelectedItem();
+
+            // 2. Crear el objeto Producto con los datos actualizados
+            Producto productoActualizado = new Producto(nombreProducto, precio);
+            productoActualizado.setCategoria(catSeleccionada);
+            
+            // 3. ¡Importante! Asignar el ID del producto que se guardó al hacer clic
+            productoActualizado.setId(this.idProductoSeleccionado); 
+
+            // 4. Llamar al servicio para que haga el UPDATE en la base de datos
+            productoService.save(productoActualizado); 
+
+            // 5. Refrescar la tabla para ver el cambio
+            cargarTablaProductos();
+            
+            JOptionPane.showMessageDialog(this, "Producto actualizado.");
+            
+            textFieldProducto.setText("");
+            textfieldPrecio.setText("");
+            jComboBox1.setSelectedIndex(0); // Pone el combo en el primer ítem
+            this.idProductoSeleccionado = null; // Olvida el ID
+            tablaProductos.clearSelection();
+
+        } catch (Exception ex) {
+            // Un try-catch es necesario por si el precio es inválido o falla la BD
+            JOptionPane.showMessageDialog(this, "Error al actualizar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            Logger.getLogger(ProductosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarActionPerformed
@@ -259,6 +286,30 @@ public class ProductosVista extends javax.swing.JFrame {
     private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
           int filaSeleccionada = tablaProductos.getSelectedRow();
    this.idProductoSeleccionado = (Long) tablaProductos.getValueAt(filaSeleccionada, 0);
+   
+   javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tablaProductos.getModel();
+   this.idProductoSeleccionado = (Long) model.getValueAt(filaSeleccionada, 0);
+        
+        // Columna 1: Nombre
+        String nombre = model.getValueAt(filaSeleccionada, 1).toString();
+        
+        // Columna 2: Precio (lo convertimos a String)
+        String precio = model.getValueAt(filaSeleccionada, 2).toString();
+        
+        // Columna 3: Categoría (¡Este es el objeto CategoriaProducto!)
+        CategoriaProducto categoria = (CategoriaProducto) model.getValueAt(filaSeleccionada, 3);
+
+        /* * 5. Asignar estos valores a tus componentes (los text fields y el combo box)
+         */
+        
+        textFieldProducto.setText(nombre);
+        textfieldPrecio.setText(precio);
+        
+        // Esto funciona perfectamente porque tu jComboBox1 
+        // está cargado con OBJETOS CategoriaProducto.
+        jComboBox1.setSelectedItem(categoria);
+   
+   
     }//GEN-LAST:event_tablaProductosMouseClicked
 
     private void buttonPedidos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPedidos
