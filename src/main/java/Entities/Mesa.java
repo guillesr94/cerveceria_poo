@@ -19,7 +19,7 @@ public class Mesa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private int numero;
 
     @Column(nullable = false)
@@ -58,8 +58,14 @@ public class Mesa {
     }
 
     public void setCapacidad(int capacidad) {
-        this.capacidad = capacidad;
+    if (capacidad < 1) {
+        throw new IllegalArgumentException("La capacidad debe ser al menos 1");
     }
+    if (capacidad > 20) {
+        throw new IllegalArgumentException("La capacidad máxima es 20");
+    }
+    this.capacidad = capacidad;
+}
 
     public boolean isOcupada() {
         return ocupada;
