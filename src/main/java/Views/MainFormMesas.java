@@ -67,10 +67,10 @@ public class MainFormMesas extends javax.swing.JFrame {
         Mesa4Button.setText("Mesa 4");
         getContentPane().add(Mesa4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, 60));
 
-        GestonMenuButton.setText("Gestion Menu");
+        GestonMenuButton.setText("Productos");
         GestonMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GestonMenuButtonActionPerformed(evt);
+                buttonProductos(evt);
             }
         });
         getContentPane().add(GestonMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
@@ -96,13 +96,13 @@ public class MainFormMesas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void GestonMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestonMenuButtonActionPerformed
-       GestionMenu ventanaGestionMenu = new GestionMenu();
-       ventanaGestionMenu.pack();
-       ventanaGestionMenu.setLocationRelativeTo(this);
-       ventanaGestionMenu.setVisible(true);
-       this.setVisible(false); 
-    }//GEN-LAST:event_GestonMenuButtonActionPerformed
+    private void buttonProductos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProductos
+      ProductosVista ventanaProducto = new ProductosVista();
+    ventanaProducto.pack();
+    ventanaProducto.setLocationRelativeTo(this); // Centrada respecto a esta ventana
+    ventanaProducto.setVisible(true);
+    this.setVisible(false); 
+    }//GEN-LAST:event_buttonProductos
 
     private void PedidosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedidosButtonActionPerformed
      Pedidos ventanaPedidos= new Pedidos();

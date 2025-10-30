@@ -349,7 +349,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="GestionMesaButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gestion Mesas"/>
+        <Property name="text" type="java.lang.String" value=" Mesas"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GestionMesaButtonActionPerformed"/>
@@ -378,7 +378,7 @@
     </Component>
     <Component class="javax.swing.JToggleButton" name="GestionMenuButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Gestion Menu"/>
+        <Property name="text" type="java.lang.String" value="Productos"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GestionMenuButtonActionPerformed"/>

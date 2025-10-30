@@ -15,10 +15,10 @@
         <class>Entities.CategoriaProducto</class>
 
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3312/Restaurante"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Restaurante"/>
             <property name="javax.persistence.jdbc.user" value="root"/>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="javax.persistence.jdbc.password" value="@Victor1995"/>
+            <property name="javax.persistence.jdbc.password" value=""/>
             <property name="eclipselink.ddl-generation.output-mode" value="database"/>
             <property name="eclipselink.ddl-generation" value="none"/>
         </properties>

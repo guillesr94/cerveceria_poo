@@ -165,6 +165,11 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         jScrollPane3.setViewportView(PedidoTabla);
 
         ConfirmPedido.setText("Confirmar Pedido");
+        ConfirmPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmPedidoActionPerformed(evt);
+            }
+        });
 
         EliminarProducto.setText("Eliminar Producto");
         EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -189,7 +194,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
             }
         });
 
-        GestionMesaButton.setText("Gestion Mesas");
+        GestionMesaButton.setText(" Mesas");
         GestionMesaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GestionMesaButtonActionPerformed(evt);
@@ -202,7 +207,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
 
         TotalLabel.setText("Total:");
 
-        GestionMenuButton.setText("Gestion Menu");
+        GestionMenuButton.setText("Productos");
         GestionMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GestionMenuButtonActionPerformed(evt);
