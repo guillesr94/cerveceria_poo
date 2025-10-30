@@ -13,8 +13,7 @@ import java.util.List;
  */
 public interface ProductoServiceInterface extends ServicesInterface<Producto> {
     List GetbyCategoria(int idCategoria) throws Exception;
-
- 
+     Producto getByNombre(String nombre)throws Exception;
         }
     
 

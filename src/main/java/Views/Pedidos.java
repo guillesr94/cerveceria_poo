@@ -1,10 +1,27 @@
-/*
+
+/*<
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
 
+
+import Entities.Producto;
 import Services.CategoriaProductoServiceImpl;
+import Services.ProductoServicesImpl;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+        
+
+
+
+
 
 /**
  *
@@ -17,9 +34,42 @@ public class Pedidos extends javax.swing.JFrame {
      */
     public Pedidos() {
         initComponents();
-        CargarCategorias();
-    }
+        
+discountEdit.getDocument().addDocumentListener(new DocumentListener(){
+   @Override
+   public void insertUpdate(DocumentEvent e){
+       aplicarDescuento();
+   }
+     @Override
+   public void removeUpdate(DocumentEvent e){
+       aplicarDescuento();
+   }
+    @Override
+   public void changedUpdate(DocumentEvent e){
+       aplicarDescuento();
+   }
 
+           
+            
+});        
+        
+        
+        
+        
+        CargarCategorias();
+        SelectorCategoria.addActionListener(evt->{
+        String seleccion=(String)SelectorCategoria.getSelectedItem();
+        if(seleccion !=null &&!seleccion.equals("Seleccione Una categoria")){
+            
+          CargarProductos(seleccion);  
+            
+        }
+        }
+        );
+        
+        
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -38,23 +88,23 @@ public class Pedidos extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaProd = new javax.swing.JList<>();
         CantidadEdit = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        AgregarProductosButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         PedidoTabla = new javax.swing.JTable();
-        ConfirmPedido = new javax.swing.JButton();
-        ModificarPedido = new javax.swing.JButton();
+        EliminarProducto = new javax.swing.JButton();
         SubtotalLabel = new javax.swing.JLabel();
         SubtotalEdit = new javax.swing.JTextField();
         CancelarPedido = new javax.swing.JButton();
         GestionMesaButton = new javax.swing.JButton();
-        DiscountEdit = new javax.swing.JTextField();
+        discountEdit = new javax.swing.JTextField();
         DiscountLabel = new javax.swing.JLabel();
-        CoceptEdit = new javax.swing.JTextField();
+        conceptEdit = new javax.swing.JTextField();
         ConceptLabel = new javax.swing.JLabel();
         totalEdit = new javax.swing.JTextField();
         TotalLabel = new javax.swing.JLabel();
         GestionMenuButton = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
+        ConfirmarPedidoButton = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,7 +121,9 @@ public class Pedidos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        MesaLabel.setText("Mesa:");
+        MesaLabel.setText("Mesa(proximamente):");
+
+        MesaEdit.setEditable(false);
 
         SelectorCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Categoria" }));
 
@@ -79,7 +131,12 @@ public class Pedidos extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(ListaProd);
 
-        jButton1.setText("Agregar Producto(s)");
+        AgregarProductosButton.setText("Agregar Producto(s)");
+        AgregarProductosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarProductosButtonActionPerformed(evt);
+            }
+        });
 
         PedidoTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,9 +165,12 @@ public class Pedidos extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(PedidoTabla);
 
-        ConfirmPedido.setText("Confirmar Pedido");
-
-        ModificarPedido.setText("Modificar Pedido");
+        EliminarProducto.setText("Eliminar Producto");
+        EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarProductoActionPerformed(evt);
+            }
+        });
 
         SubtotalLabel.setText("Subtotal:");
 
@@ -122,6 +182,11 @@ public class Pedidos extends javax.swing.JFrame {
         });
 
         CancelarPedido.setText("Cancelar Pedido");
+        CancelarPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarPedidoActionPerformed(evt);
+            }
+        });
 
         GestionMesaButton.setText("Gestion Mesas");
         GestionMesaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +211,13 @@ public class Pedidos extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Pedidos");
 
+        ConfirmarPedidoButton.setText("Confirmar Pedido");
+        ConfirmarPedidoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmarPedidoButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,49 +238,57 @@ public class Pedidos extends javax.swing.JFrame {
                             .addComponent(CantidadEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
+                .addGap(157, 157, 157)
+                .addComponent(AgregarProductosButton)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 12, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(180, 180, 180)
+                                .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ConfirmPedido)
-                                    .addComponent(SubtotalLabel)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(DiscountLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(ConceptLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(32, 32, 32)
-                                        .addComponent(TotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addComponent(ModificarPedido)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(CancelarPedido))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(37, 37, 37)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(CoceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(DiscountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(GestionMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(MesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                                        .addGap(54, 54, 54)
+                                        .addComponent(GestionMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(44, 44, 44))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(MesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)))
+                                .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(SubtotalLabel)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(DiscountLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ConceptLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(conceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(discountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(TotalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(31, 31, 31)
+                            .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(EliminarProducto))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ConfirmarPedidoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(CancelarPedido)
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,31 +312,32 @@ public class Pedidos extends javax.swing.JFrame {
                     .addComponent(CantidadEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CantidadLabel))
                 .addGap(12, 12, 12)
-                .addComponent(jButton1)
+                .addComponent(AgregarProductosButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SubtotalLabel)
                     .addComponent(SubtotalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(DiscountLabel)
-                    .addComponent(DiscountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(discountEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CoceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(conceptEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ConceptLabel))
-                .addGap(22, 22, 22)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TotalLabel)
-                    .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TotalLabel))
                 .addGap(18, 18, 18)
+                .addComponent(EliminarProducto)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ConfirmPedido)
-                    .addComponent(ModificarPedido)
-                    .addComponent(CancelarPedido))
-                .addGap(66, 66, 66))
+                    .addComponent(CancelarPedido)
+                    .addComponent(ConfirmarPedidoButton))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -272,8 +353,7 @@ public class Pedidos extends javax.swing.JFrame {
          for(Entities.CategoriaProducto cat: categorias){
             SelectorCategoria.addItem(cat.getCategoria());
          }
-         
-     }catch(Exception e) {
+      }catch(Exception e) {
          javax.swing.JOptionPane.showMessageDialog(this,
                  "Error al cargar categorias :"+e.getMessage(),
                  "Error",
@@ -282,14 +362,50 @@ public class Pedidos extends javax.swing.JFrame {
          
          
      }
+    } 
+    
+    
+private void CargarProductos(String Categoria){
+   try{
+    CategoriaProductoServiceImpl categoriaService= new CategoriaProductoServiceImpl();
+    List<Entities.CategoriaProducto>categorias=categoriaService.List();
+    Entities.CategoriaProducto categoriaSelec=categorias.stream().filter(c->c.getCategoria()
+            .equals(Categoria)).findFirst().orElse(null);
+            
+    if(categoriaSelec!=null){
+       ProductoServicesImpl ProductoServices=new ProductoServicesImpl();
+       List<Entities.Producto>productos=ProductoServices.GetbyCategoria(categoriaSelec.getIdCategoria());
+       DefaultListModel<String>modelo=new DefaultListModel<>();
+       for(Entities.Producto p:productos){
+           modelo.addElement(p.getNombre()+"-$"+p.getPrecio());
+       }
+       
+       ListaProd.setModel(modelo);
+       
+       
     }
     
-    private void ProductosCategoria(){
-        
-        
-        
-        
-    }
+   }catch(Exception e){
+    javax.swing.JOptionPane.showMessageDialog(
+    this,
+            "No se Encontro la categoria Seleccionada:"+e.getMessage(),
+            "Error",
+    javax.swing.JOptionPane.ERROR_MESSAGE
+    
+    );
+    
+    
+}
+}
+
+
+
+    
+    
+    
+
+
+    
     
     private void SubtotalEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubtotalEditActionPerformed
         // TODO add your handling code here:
@@ -310,6 +426,261 @@ public class Pedidos extends javax.swing.JFrame {
        ventanaGestionMenu.setVisible(true);
        this.setVisible(false); 
     }//GEN-LAST:event_GestionMenuButtonActionPerformed
+
+    private void AgregarProductosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProductosButtonActionPerformed
+    String productoSelected=ListaProd.getSelectedValue();
+        String cantidadText=CantidadEdit.getText();
+    String mesaText=MesaEdit.getText();
+    String categoria=(String)SelectorCategoria.getSelectedItem();
+
+    int cantidad;
+    try{
+    cantidad=Integer.parseInt(cantidadText);
+    if(cantidad <=0)throw new NumberFormatException();
+    }catch(NumberFormatException ex){
+javax.swing.JOptionPane.showMessageDialog(this,"La cantidad debe ser positiva");
+return;
+    }
+    String[] division=productoSelected.split("-\\$");
+    String nombreP=division[0];
+    double precio=Double.parseDouble(division[1]);
+    double subtotal=precio*cantidad;
+    
+  String noTable;
+if(mesaText!=null && !mesaText.isEmpty()){
+noTable=mesaText;
+}else{
+noTable="Pedido para delivery";
+
+}
+    javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+    model.insertRow(0,new Object[]{
+    nombreP,
+    categoria,
+    String.format("%.2f",precio),
+    cantidad,
+   noTable
+})
+  
+
+;
+CantidadEdit.setText("");
+       
+recalcularSubtotal();
+    }//GEN-LAST:event_AgregarProductosButtonActionPerformed
+
+    private void EliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarProductoActionPerformed
+     int selectRow=-1;
+     
+       selectRow=PedidoTabla.getSelectedRow();
+     
+         if (selectRow==-1){
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para eliminar");
+            return; 
+         }
+           try{
+              javax.swing.table.DefaultTableModel model=
+                      (javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+               
+              model.removeRow(selectRow);
+              
+               recalcularSubtotal();
+          
+     }catch(Exception e ){
+        javax.swing.JOptionPane.showMessageDialog(
+        this,
+              "Error al eliminar producto: " + e.getMessage()   
+        
+        );
+         
+     }
+      
+    }//GEN-LAST:event_EliminarProductoActionPerformed
+
+    private void ConfirmarPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+   try {
+        
+        recalcularSubtotal();
+        aplicarDescuento();
+
+       
+        Entities.PedidoMesa pedido = new Entities.PedidoMesa();
+
+
+        float descuento = 0f;
+        if (!discountEdit.getText().isEmpty()) {
+            descuento = Float.parseFloat(discountEdit.getText().replace(",", "."));
+        }
+        pedido.setDescuento(descuento);
+
+
+        pedido.setConceptoDescuento(conceptEdit.getText());
+
+     
+        double total = Double.parseDouble(totalEdit.getText().replace(",", "."));
+        pedido.setTotal(total);
+
+    
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) PedidoTabla.getModel();
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+Object prodObj=model.getValueAt(i,0);
+Object precioObj=model.getValueAt(i, 2);
+Object cantidadObj=model.getValueAt(i,3);
+        
+if(prodObj==null ||precioObj==null ||cantidadObj==null){
+    continue;
+}
+
+String nombreProducto=prodObj.toString();
+double precio=Double.parseDouble(precioObj.toString().replace(",", "."));
+int cantidad=Integer.parseInt(cantidadObj.toString());
+
+Services.ProductoServicesImpl productoService=new Services.ProductoServicesImpl();
+Entities.Producto producto=productoService.getByNombre(nombreProducto);
+
+
+Entities.DetallePedido detalle=new Entities.DetallePedido(producto,cantidad);
+pedido.guardarDetalle(detalle);
+
+
+        }
+
+Services.PedidoMesaServiceImpl service=new Services.PedidoMesaServiceImpl();
+service.save(pedido);
+        
+        
+        JOptionPane.showMessageDialog(this, " Pedido guardado correctamente");
+for(int i=0;i<model.getRowCount();i++){
+for(int j=0;j<model.getColumnCount();j++){
+    model.setValueAt("", i,j);
+}    
+    
+}
+        
+        
+ SubtotalEdit.setText("0.00");
+ discountEdit.setText("");
+ conceptEdit.setText("");
+ totalEdit.setText("0.00");
+ CantidadEdit.setText("");
+ ListaProd.clearSelection();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al confirmar el pedido: " + e.getMessage());
+        e.printStackTrace();
+    }  
+ 
+    }                                                     
+
+    private void CancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {                                               
+      
+
+           javax.swing.table.DefaultTableModel model=
+                   (javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+                          
+       
+           for(int i=0;i<model.getRowCount();i++){
+for(int j=0;j<model.getColumnCount();j++){
+    model.setValueAt("", i,j);
+}    
+    
+}
+                           
+   SubtotalEdit.setText("0.00");
+   discountEdit.setText("");
+   conceptEdit.setText("");
+   totalEdit.setText("0.00");
+   CantidadEdit.setText("");
+   SelectorCategoria.setSelectedIndex(0);
+   ListaProd.clearSelection();
+           
+       } 
+        
+      
+    
+
+private void recalcularSubtotal(){
+    javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+   double subtotal=0.0;
+   for(int i=0;i<model.getRowCount();i++){
+   Object precioObj=model.getValueAt(i,2);
+Object cantidadObj=model.getValueAt(i,3);
+if (precioObj == null || cantidadObj == null) continue;    
+
+  double precio = Double.parseDouble(precioObj.toString().replace(",", "."));
+    int cantidad=Integer.parseInt(cantidadObj.toString());
+    subtotal+=precio*cantidad;
+}
+
+SubtotalEdit.setText(String.format("%.2f", subtotal));
+ aplicarDescuento();   
+}
+
+
+
+    private void aplicarDescuento() {
+ try{       
+     conceptEdit.getText();
+ 
+String getDescuento=discountEdit.getText();
+String getSubtotal=SubtotalEdit.getText();
+double subtotal=0.0;
+double descuento=0.0;
+double total=0.0;
+
+if (getSubtotal !=null && !getSubtotal.isEmpty())
+subtotal=Double.parseDouble(getSubtotal.replace(",","."));
+     
+if(getDescuento!=null && !getDescuento.isEmpty() ){
+descuento=Double.parseDouble(getDescuento.replace(",","."));
+    }                                                
+
+if(descuento<0 || descuento>100 ){
+conceptEdit.setText("Descuento no valido ");
+total=subtotal;
+}else{
+    conceptEdit.setText("");
+total=subtotal-(subtotal*(descuento/100));
+
+if(descuento==0||getDescuento.isEmpty()){
+ conceptEdit.setText("No aplica descuento");
+total=subtotal   ;
+    
+}
+
+if(conceptEdit.getText().isEmpty()) 
+conceptEdit.setText(" varios ");
+
+
+}
+if(getDescuento.isEmpty()&& conceptEdit.getText().isEmpty()){
+  total=subtotal;  
+    
+}
+
+
+totalEdit.setText(String.format("%.2f", total));
+
+ }catch(Exception e){
+javax.swing.JOptionPane.showMessageDialog(this,"Error en el descuento aplicado");
+ }
+    
+}
+    
+    
+    
+    
+
+
+
+
+        
+        
+        
+   
+
+   
 
     /**
      * @param args the command line arguments
@@ -347,26 +718,26 @@ public class Pedidos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AgregarProductosButton;
     private javax.swing.JButton CancelarPedido;
     private javax.swing.JTextField CantidadEdit;
     private javax.swing.JLabel CantidadLabel;
-    private javax.swing.JTextField CoceptEdit;
     private javax.swing.JLabel ConceptLabel;
-    private javax.swing.JButton ConfirmPedido;
-    private javax.swing.JTextField DiscountEdit;
+    private javax.swing.JButton ConfirmarPedidoButton;
     private javax.swing.JLabel DiscountLabel;
+    private javax.swing.JButton EliminarProducto;
     private javax.swing.JToggleButton GestionMenuButton;
     private javax.swing.JButton GestionMesaButton;
     private javax.swing.JList<String> ListaProd;
     private javax.swing.JTextField MesaEdit;
     private javax.swing.JLabel MesaLabel;
-    private javax.swing.JButton ModificarPedido;
     private javax.swing.JTable PedidoTabla;
     private javax.swing.JComboBox<String> SelectorCategoria;
     private javax.swing.JTextField SubtotalEdit;
     private javax.swing.JLabel SubtotalLabel;
     private javax.swing.JLabel TotalLabel;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField conceptEdit;
+    private javax.swing.JTextField discountEdit;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -374,4 +745,5 @@ public class Pedidos extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField totalEdit;
     // End of variables declaration//GEN-END:variables
-}
+
+} 

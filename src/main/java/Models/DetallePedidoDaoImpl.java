@@ -24,7 +24,7 @@ public class DetallePedidoDaoImpl implements DetallePedidoDao  {
 private static DetallePedidoDaoImpl instance;
     
 private DetallePedidoDaoImpl(){
-    emf=Persistence.createEntityManagerFactory("DP");
+    emf=Persistence.createEntityManagerFactory("Restaurante_PU");
     em=emf.createEntityManager();
     
 }
@@ -98,5 +98,13 @@ public static DetallePedidoDaoImpl getInstance(){
     }
     
     }
-}
 
+    @Override
+    public List<DetallePedido> getByPedido(int idPedido) throws DaoException {
+ return em.createQuery(
+ "SELECT d FROM DetalleXPedido d WHERE d.pedido.idPedido=:id ",DetallePedido.class)
+         .setParameter("id", idPedido).getResultList();
+        
+        }
+
+}

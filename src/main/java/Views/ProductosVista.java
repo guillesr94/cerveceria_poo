@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ProductosVista extends javax.swing.JFrame {
     private CategoriaProductoServiceImpl categoriaProductoServiceImpl;
     private ProductoServiceInterface productoService;
     private ProductoServicesImpl productoServicesImpl;
+    private Long idProductoSeleccionado = null;
     /**
      * Creates new form ProductosVista
      */
@@ -31,7 +33,8 @@ public class ProductosVista extends javax.swing.JFrame {
         this.productoServicesImpl = new ProductoServicesImpl();
         this.categoriaProductoServiceImpl = new CategoriaProductoServiceImpl();
         this.productoService = this.productoServicesImpl;
-        cargarCategorias();
+        
+        cargarTablaProductos();
     }
 
     /**
@@ -43,6 +46,8 @@ public class ProductosVista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         buttonAgregar = new javax.swing.JButton();
         textFieldProducto = new javax.swing.JTextField();
         buttonEditar = new javax.swing.JButton();
@@ -54,6 +59,21 @@ public class ProductosVista extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         textFieldStock = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaProductos = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,14 +104,34 @@ public class ProductosVista extends javax.swing.JFrame {
 
         jLabel4.setText("Stock");
 
+        tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Id_producto", "Producto", "Precio", "Categoria"
+            }
+        ));
+        tablaProductos.setName("tablaProductos"); // NOI18N
+        tablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaProductosMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tablaProductos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -107,9 +147,9 @@ public class ProductosVista extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(textFieldStock, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                                .addComponent(textFieldStock, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
                                             .addComponent(textfieldPrecio))
                                         .addGap(137, 137, 137))
                                     .addGroup(layout.createSequentialGroup()
@@ -119,7 +159,8 @@ public class ProductosVista extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(buttonEliminar)
-                                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(buttonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addGap(27, 27, 27))))
         );
         layout.setVerticalGroup(
@@ -154,23 +195,24 @@ public class ProductosVista extends javax.swing.JFrame {
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textFieldStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAgregarProducto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarProducto
-        
-        
-        int stock = Integer.parseInt(textFieldStock.getText());
-        
+      
         Producto productoNuevo = agregarProducto();
-       
+        
         try {
             productoService.save(productoNuevo);
+            cargarTablaProductos();
+            JOptionPane.showMessageDialog(this, "Se agregó el producto.");
         } catch (Exception ex) {
             Logger.getLogger(ProductosVista.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -181,8 +223,19 @@ public class ProductosVista extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEliminarActionPerformed
-        // TODO add your handling code here:
+        try {
+            productoService.delete(this.idProductoSeleccionado.intValue());
+            cargarTablaProductos();
+        } catch (Exception ex) {
+            Logger.getLogger(ProductosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
     }//GEN-LAST:event_buttonEliminarActionPerformed
+
+    private void tablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaProductosMouseClicked
+          int filaSeleccionada = tablaProductos.getSelectedRow();
+   this.idProductoSeleccionado = (Long) tablaProductos.getValueAt(filaSeleccionada, 0);
+    }//GEN-LAST:event_tablaProductosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,13 +276,44 @@ public class ProductosVista extends javax.swing.JFrame {
         
     String nombreProducto = textFieldProducto.getText();
     float precio = Float.parseFloat(textfieldPrecio.getText());
-    int stock = Integer.parseInt(textFieldStock.getText());
-    
-    CategoriaProducto categoriaSeleccionada = (CategoriaProducto) jComboBox1.getSelectedItem();
-        return null;
+   
+    return new Producto(nombreProducto,precio); 
     }
     
-    private void cargarCategorias() {
+    private void cargarTablaProductos() {
+    DefaultTableModel model = (DefaultTableModel) tablaProductos.getModel();
+    
+    // 2. Limpiar (borrar filas viejas)
+    model.setRowCount(0); 
+    
+    // 3. Pedir la lista (¡Sin try-catch!)
+    List<Producto> productos = null; 
+        try {
+            productos = productoService.List();
+        } catch (Exception ex) {
+            Logger.getLogger(ProductosVista.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    // 4. Agregar las filas nuevas
+    for (Producto p : productos) {
+        
+        String categoriaNombre = "Sin Categoría";
+        
+        
+        // Crea la fila
+        Object[] fila = new Object[4];
+        fila[0] = p.getId();
+        fila[1] = p.getNombre();
+        fila[2] = p.getPrecio();
+        fila[3] = categoriaNombre;
+        
+        // Agrega la fila al "cerebro"
+        model.addRow(fila);
+    }
+    
+}
+    
+  /*  private void cargarCategorias() {
     try {
         // 1. Limpiar items de ejemplo
         jComboBox1.removeAllItems(); 
@@ -248,7 +332,7 @@ public class ProductosVista extends javax.swing.JFrame {
                                     "Error", 
                                     JOptionPane.ERROR_MESSAGE);
     }
-    }
+    }*/
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAgregar;
     private javax.swing.JButton buttonEditar;
@@ -258,6 +342,10 @@ public class ProductosVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaProductos;
     private javax.swing.JTextField textFieldProducto;
     private javax.swing.JTextField textFieldStock;
     private javax.swing.JTextField textfieldPrecio;

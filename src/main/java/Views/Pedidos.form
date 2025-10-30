@@ -68,64 +68,74 @@
               </Group>
           </Group>
           <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane3" alignment="0" min="-2" pref="395" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="ConfirmPedido" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SubtotalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="DiscountLabel" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="ConceptLabel" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                      <Component id="TotalLabel" min="-2" pref="37" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                                      <Component id="ModificarPedido" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Component id="CancelarPedido" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="totalEdit" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="CoceptEdit" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="DiscountEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="SubtotalEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                          </Group>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="GestionMesaButton" min="-2" pref="120" max="-2" attributes="0"/>
-                          <Component id="MesaLabel" min="-2" pref="47" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Component id="MesaEdit" min="-2" pref="136" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+              <Component id="AgregarProductosButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="447" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                      <Component id="GestionMesaButton" min="-2" pref="120" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="MesaLabel" min="-2" pref="128" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="MesaEdit" min="-2" pref="136" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="SubtotalLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="DiscountLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="ConceptLabel" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="conceptEdit" min="-2" pref="122" max="-2" attributes="0"/>
+                      <Component id="discountEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                      <Component id="SubtotalEdit" alignment="1" min="-2" pref="122" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="TotalLabel" min="-2" pref="37" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="totalEdit" min="-2" pref="122" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="EliminarProducto" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="ConfirmarPedidoButton" min="-2" pref="134" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="CancelarPedido" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,7 +164,7 @@
                   <Component id="CantidadLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="AgregarProductosButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane3" min="-2" pref="120" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -162,28 +172,29 @@
                   <Component id="SubtotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="SubtotalEdit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="17" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="DiscountLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="DiscountEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="discountEdit" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="CoceptEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="conceptEdit" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ConceptLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="TotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="totalEdit" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="TotalLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="EliminarProducto" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ConfirmPedido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="ModificarPedido" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="CancelarPedido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ConfirmarPedidoButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -191,10 +202,13 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="MesaLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mesa:"/>
+        <Property name="text" type="java.lang.String" value="Mesa(proximamente):"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="MesaEdit">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="SelectorCategoria">
       <Properties>
@@ -234,10 +248,13 @@
     </Container>
     <Component class="javax.swing.JTextField" name="CantidadEdit">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="AgregarProductosButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar Producto(s)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarProductosButtonActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane3">
       <AuxValues>
@@ -293,15 +310,13 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="ConfirmPedido">
+    <Component class="javax.swing.JButton" name="EliminarProducto">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Confirmar Pedido"/>
+        <Property name="text" type="java.lang.String" value="Eliminar Producto"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="ModificarPedido">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Modificar Pedido"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EliminarProductoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="SubtotalLabel">
       <Properties>
@@ -320,6 +335,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Cancelar Pedido"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarPedidoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="GestionMesaButton">
       <Properties>
@@ -329,14 +347,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GestionMesaButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="DiscountEdit">
+    <Component class="javax.swing.JTextField" name="discountEdit">
     </Component>
     <Component class="javax.swing.JLabel" name="DiscountLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descuento(en %):"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="CoceptEdit">
+    <Component class="javax.swing.JTextField" name="conceptEdit">
     </Component>
     <Component class="javax.swing.JLabel" name="ConceptLabel">
       <Properties>
@@ -365,6 +383,14 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Pedidos"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ConfirmarPedidoButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Confirmar Pedido"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfirmarPedidoButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -62,7 +62,7 @@ em.getTransaction().begin();
     @Override
     public List<PedidoMesa> getAll() throws DaoException {
     try{
-        String query="SELECT p FROM PedidoXMesa";
+        String query="SELECT p FROM PedidoMesa p ";
     Query q=em.createQuery(query);
     return q.getResultList();
     }catch(Exception e){

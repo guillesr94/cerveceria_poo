@@ -50,7 +50,7 @@ public DetalleServiceImpl(){
    if(dp!=null){
     dao.delete(dp);
    }else{
-        throw new Exception("No existe el detalle del id:"+idDetalle);
+        throw new Exception("No existe el detalle del pedido con el id :"+idDetalle);
     }
    
     }

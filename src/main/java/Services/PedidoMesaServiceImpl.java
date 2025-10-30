@@ -4,7 +4,9 @@
  */
 package Services;
 
+import Dao.DetallePedidoDao;
 import Dao.PedidoMesaDao;
+import Entities.DetallePedido;
 import Entities.PedidoMesa;
 import Models.PedidoMesaDaoImpl;
 
@@ -12,7 +14,7 @@ import Models.PedidoMesaDaoImpl;
  *
  * @author victo
  */
-public  class PedidoMesaServiceImpl implements ServicesInterface<PedidoMesa> {
+public  class PedidoMesaServiceImpl implements PedidoMesaService {
     private PedidoMesaDao dao;
     
     /**
@@ -24,7 +26,7 @@ public  class PedidoMesaServiceImpl implements ServicesInterface<PedidoMesa> {
         
     }
 
-   /* @Override
+ /*   @Override
     public void save(PedidoMesa Pedido) throws Exception {
   if(Pedido.getMesa()!=null){
       dao.save(Pedido);
@@ -60,10 +62,22 @@ return dao.getById(id);
     }
 
     @Override
-    public void save(PedidoMesa entity) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void save(PedidoMesa pedido) throws Exception {
+   dao.save(pedido);
     }
     
-    
-    
+        @Override
+    public void agregarProductoAlPedido(String productoSelected, String cantidad, int mesa) throws Exception {
+      if(productoSelected==null||productoSelected.isEmpty()){
+           throw new Exception("Debe seleccionar un producto.");
+       } 
+       if (cantidad==null||cantidad.isEmpty()){
+           throw new Exception("Debe poner una cantidad");
+       } 
+       
+    if(mesa<1||mesa>5){
+          throw new Exception("Debe selecionar una mesa entre 1 y 5 para asignar pedidos ");
+    }
+ 
+    }
 }
