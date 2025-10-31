@@ -40,7 +40,6 @@ productoDao.save(Producto);
         
     }
     
-
     @Override
     public java.util.List<Producto> List() throws Exception {
  return productoDao.getAll();
@@ -48,7 +47,33 @@ productoDao.save(Producto);
 
     @Override
     public void update(Producto Producto) throws Exception {
-    productoDao.update(Producto);
+    
+    if (Producto.getId() == null || Producto.getId() <= 0) {
+        throw new Exception("ID de producto no válido para la actualización.");
+    }
+    
+    // Validación del Nombre
+    if (Producto.getNombre() == null || Producto.getNombre().trim().isEmpty()) {
+        throw new Exception("El nombre del producto no puede estar vacío.");
+    }
+
+    // Validación de la Categoría
+    if (Producto.getCategoria() == null) {
+        throw new Exception("Debe seleccionar una categoría para el producto.");
+    }
+
+    // Validación del Precio
+    if (Producto.getPrecio() <= 0) {
+        throw new Exception("El precio debe ser un número positivo.");
+    }
+
+    try {
+        productoDao.update(Producto);
+        
+    } catch (DaoException e) {
+        // Manejo de errores de la base de datos (Tu bloque original)
+        throw new Exception("Error al actualizar el producto en la base de datos.", e);
+    }
     }
 
     @Override

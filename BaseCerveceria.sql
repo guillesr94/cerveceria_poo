@@ -51,3 +51,10 @@ create table if not exists CuentaXMesa (
     total DECIMAL(10,2),
    FOREIGN KEY (idMesa) REFERENCES Mesa(idMesa)
 );
+
+    total DECIMAL(10, 2),
+    FOREIGN KEY (idMesa) REFERENCES Mesa (idMesa)
+  );
+
+ALTER TABLE Producto DROP COLUMN stock;
+

@@ -9,6 +9,7 @@ package Views;
 import Entities.Producto;
 import Services.CategoriaProductoServiceImpl;
 import Services.ProductoServicesImpl;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -165,6 +166,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         });
         jScrollPane3.setViewportView(PedidoTabla);
 
+
         EliminarProducto.setText("Eliminar Producto");
         EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,7 +190,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
             }
         });
 
-        GestionMesaButton.setText("Gestion Mesas");
+        GestionMesaButton.setText(" Mesas");
         GestionMesaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GestionMesaButtonActionPerformed(evt);
@@ -201,10 +203,10 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
 
         TotalLabel.setText("Total:");
 
-        GestionMenuButton.setText("Gestion Menu");
+        GestionMenuButton.setText("Productos");
         GestionMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GestionMenuButtonActionPerformed(evt);
+                buttonProductos(evt);
             }
         });
 
@@ -222,25 +224,6 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(GestionMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
-                                .addComponent(SelectorCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(CantidadLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CantidadEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(157, 157, 157)
-                .addComponent(AgregarProductosButton)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -261,7 +244,11 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
                                         .addContainerGap()
                                         .addComponent(MesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)))
-                                .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(MesaEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(28, 28, 28)
+                                        .addComponent(GestionMenuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -289,6 +276,20 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CancelarPedido)
                 .addGap(76, 76, 76))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                                .addComponent(SelectorCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(CantidadLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CantidadEdit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(157, 157, 157)
+                        .addComponent(AgregarProductosButton)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -419,13 +420,13 @@ private void CargarProductos(String Categoria){
     this.setVisible(false);   // TODO add your handling code here:
     }//GEN-LAST:event_GestionMesaButtonActionPerformed
 
-    private void GestionMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestionMenuButtonActionPerformed
-      GestionMenu ventanaGestionMenu = new GestionMenu();
-       ventanaGestionMenu.pack();
-       ventanaGestionMenu.setLocationRelativeTo(this);
-       ventanaGestionMenu.setVisible(true);
-       this.setVisible(false); 
-    }//GEN-LAST:event_GestionMenuButtonActionPerformed
+    private void buttonProductos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProductos
+     ProductosVista ventanaProducto = new ProductosVista();
+    ventanaProducto.pack();
+    ventanaProducto.setLocationRelativeTo(this); // Centrada respecto a esta ventana
+    ventanaProducto.setVisible(true);
+    this.setVisible(false); 
+    }//GEN-LAST:event_buttonProductos
 
     private void AgregarProductosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarProductosButtonActionPerformed
     String productoSelected=ListaProd.getSelectedValue();
@@ -608,8 +609,7 @@ for(int j=0;j<model.getColumnCount();j++){
            
        } 
         
-      
-    
+   
 
 private void recalcularSubtotal(){ 
 
