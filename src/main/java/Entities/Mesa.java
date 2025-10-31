@@ -58,14 +58,14 @@ public class Mesa {
     }
 
     public void setCapacidad(int capacidad) {
-    if (capacidad < 1) {
-        throw new IllegalArgumentException("La capacidad debe ser al menos 1");
+        if (capacidad < 1) {
+            throw new IllegalArgumentException("La capacidad debe ser al menos 1");
+        }
+        if (capacidad > 20) {
+            throw new IllegalArgumentException("La capacidad máxima es 20");
+        }
+        this.capacidad = capacidad;
     }
-    if (capacidad > 20) {
-        throw new IllegalArgumentException("La capacidad máxima es 20");
-    }
-    this.capacidad = capacidad;
-}
 
     public boolean isOcupada() {
         return ocupada;

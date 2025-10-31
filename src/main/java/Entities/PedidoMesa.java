@@ -4,7 +4,6 @@
  */
 package Entities;
 
-
 import Entities.DetallePedido;
 import Models.MesaUI;
 import java.util.ArrayList;
@@ -25,35 +24,33 @@ import javax.persistence.Table;
  * @author victo
  */
 @Entity
-@Table(name="Pedido")        
+@Table(name = "Pedido")
 public class PedidoMesa {
-  @Id
-  @GeneratedValue(strategy=GenerationType.IDENTITY)
-  private int idPedido;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idPedido;
 
-  
     private Double total;
     private Float descuento;
 
-  
-  
-  
- /* @ManyToOne
-  @JoinColumn(name="idMesa",nullable=true)
- private Mesa mesa;
+    /*
+     * @ManyToOne
+     * 
+     * @JoinColumn(name="idMesa",nullable=true)
+     * private Mesa mesa;
+     * 
+     * 
+     * @Column(name="IdMesa")
+     * private int idMesa;
+     */
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetallePedido> detalles = new ArrayList<>();
 
-  
-  @Column(name="IdMesa")
-  private int idMesa;
-  */
-   @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DetallePedido> detalles=new ArrayList<>() ; 
-  
-   
-      public int getIdPedido() {
+    public int getIdPedido() {
         return idPedido;
     }
-       @Column(length = 60)
+
+    @Column(length = 60)
     private String conceptoDescuento;
 
     public Double getTotal() {
@@ -79,30 +76,28 @@ public class PedidoMesa {
     public void setConceptoDescuento(String conceptoDescuento) {
         this.conceptoDescuento = conceptoDescuento;
     }
-    
-    
-   
- 
-/*
-    public int getIdMesa() {
-        return idMesa;
-    }
 
-    public void setIdMesa(int idMesa) {
-        this.idMesa = idMesa;
-    }
-*/
+    /*
+     * public int getIdMesa() {
+     * return idMesa;
+     * }
+     * 
+     * public void setIdMesa(int idMesa) {
+     * this.idMesa = idMesa;
+     * }
+     */
     public void setIdPedido(int idPedido) {
         this.idPedido = idPedido;
     }
-/*
-    public Mesa getMesa() {
-        return mesa;
-    }
-
-    public void setMesa(Mesa mesa) {
-        this.mesa = mesa;
-    }*/
+    /*
+     * public Mesa getMesa() {
+     * return mesa;
+     * }
+     * 
+     * public void setMesa(Mesa mesa) {
+     * this.mesa = mesa;
+     * }
+     */
 
     public List<DetallePedido> getDetalles() {
         return detalles;
@@ -112,15 +107,12 @@ public class PedidoMesa {
         this.detalles = detalles;
     }
 
-    public void guardarDetalle(DetallePedido detalle){
- if(detalles==null){
-detalles=new ArrayList<>();
-}
- detalle.setPedido(this);
-detalles.add(detalle); 
- 
- 
- 
-}
-}
+    public void guardarDetalle(DetallePedido detalle) {
+        if (detalles == null) {
+            detalles = new ArrayList<>();
+        }
+        detalle.setPedido(this);
+        detalles.add(detalle);
 
+    }
+}

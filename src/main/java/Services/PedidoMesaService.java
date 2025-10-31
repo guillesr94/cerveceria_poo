@@ -11,6 +11,6 @@ import Entities.PedidoMesa;
  * @author victo
  */
 public interface PedidoMesaService extends ServicesInterface<PedidoMesa> {
-      void agregarProductoAlPedido(String producto, 
-         String cantidad,int mesa) throws Exception;
+      void agregarProductoAlPedido(String producto,
+                  String cantidad, int mesa) throws Exception;
 }

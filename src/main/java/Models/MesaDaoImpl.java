@@ -36,7 +36,7 @@ public class MesaDaoImpl implements MesaDao {
 
     @Override
     public void save(Mesa mesa) throws DaoException {
-        EntityManager em = null; 
+        EntityManager em = null;
         EntityTransaction tx = null;
         try {
             em = emf.createEntityManager();
@@ -86,7 +86,7 @@ public class MesaDaoImpl implements MesaDao {
             em = emf.createEntityManager();
             tx = em.getTransaction();
             tx.begin();
-            
+
             Mesa mesaToDelete = em.find(Mesa.class, mesa.getId());
             if (mesaToDelete != null) {
                 em.remove(mesaToDelete);
@@ -99,7 +99,7 @@ public class MesaDaoImpl implements MesaDao {
             throw new DaoException("Error al eliminar mesa", e);
         } finally {
             if (em != null) {
-                em.close(); 
+                em.close();
             }
         }
     }
