@@ -23,13 +23,198 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="64" pref="64" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="abrirMesaButton" alignment="0" min="-2" pref="317" max="-2" attributes="0"/>
+                  <Component id="cerrarMesaButton" alignment="0" min="-2" pref="317" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="pedidosTitleLabel" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="totalMesaLabel" min="-2" pref="89" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="totalMesaField" min="-2" pref="113" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="cobrarMesaButton" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="agregarPedidoButton" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="verEditarPedidoButton" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="eliminarPedidoButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="jScrollPane" alignment="0" min="-2" pref="380" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="numMesaTitleLabel" max="32767" attributes="0"/>
+                                      <Component id="capacidadMesaTitleLabel" pref="81" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="numMesaLabel" min="-2" max="-2" attributes="0"/>
+                                      <Component id="capacidadMesaLabel" min="-2" pref="116" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="28" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="numMesaTitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="numMesaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="capacidadMesaTitleLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="capacidadMesaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="abrirMesaButton" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="pedidosTitleLabel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane" min="-2" pref="158" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="verEditarPedidoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="eliminarPedidoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="agregarPedidoButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="totalMesaLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="totalMesaField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cobrarMesaButton" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="cerrarMesaButton" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="numMesaTitleLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mesa N&#xb0;:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="numMesaLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="[ N&#xb0; mesa ]"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="capacidadMesaTitleLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Capacidad:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="capacidadMesaLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="[ Cap. comensales ]"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="pedidosTitleLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Pedidos de la mesa"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="verEditarPedidoButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ver / Editar pedido"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="eliminarPedidoButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Eliminar pedido"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JList" name="pedidosList">
+          <Properties>
+            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
+                <StringItem index="4" value="Item 5"/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JLabel" name="totalMesaLabel">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Total mesa:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="totalMesaField">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="[ total mesa ]"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="agregarPedidoButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Agregar pedido"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarPedidoButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="abrirMesaButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Abrir mesa"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="abrirMesaButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="cerrarMesaButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cerrar mesa"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cerrarMesaButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="cobrarMesaButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cobrar mesa"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cobrarMesaButtonActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
 </Form>

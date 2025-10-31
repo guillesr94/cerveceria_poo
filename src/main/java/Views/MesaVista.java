@@ -28,21 +28,169 @@ public class MesaVista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        numMesaTitleLabel = new javax.swing.JLabel();
+        numMesaLabel = new javax.swing.JLabel();
+        capacidadMesaTitleLabel = new javax.swing.JLabel();
+        capacidadMesaLabel = new javax.swing.JLabel();
+        pedidosTitleLabel = new javax.swing.JLabel();
+        verEditarPedidoButton = new javax.swing.JButton();
+        eliminarPedidoButton = new javax.swing.JButton();
+        jScrollPane = new javax.swing.JScrollPane();
+        pedidosList = new javax.swing.JList<>();
+        totalMesaLabel = new javax.swing.JLabel();
+        totalMesaField = new javax.swing.JTextField();
+        agregarPedidoButton = new javax.swing.JButton();
+        abrirMesaButton = new javax.swing.JButton();
+        cerrarMesaButton = new javax.swing.JButton();
+        cobrarMesaButton = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        numMesaTitleLabel.setText("Mesa N°:");
+
+        numMesaLabel.setText("[ N° mesa ]");
+
+        capacidadMesaTitleLabel.setText("Capacidad:");
+
+        capacidadMesaLabel.setText("[ Cap. comensales ]");
+
+        pedidosTitleLabel.setText("Pedidos de la mesa");
+
+        verEditarPedidoButton.setText("Ver / Editar pedido");
+
+        eliminarPedidoButton.setText("Eliminar pedido");
+
+        pedidosList.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane.setViewportView(pedidosList);
+
+        totalMesaLabel.setText("Total mesa:");
+
+        totalMesaField.setText("[ total mesa ]");
+
+        agregarPedidoButton.setText("Agregar pedido");
+        agregarPedidoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarPedidoButtonActionPerformed(evt);
+            }
+        });
+
+        abrirMesaButton.setText("Abrir mesa");
+        abrirMesaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrirMesaButtonActionPerformed(evt);
+            }
+        });
+
+        cerrarMesaButton.setText("Cerrar mesa");
+        cerrarMesaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarMesaButtonActionPerformed(evt);
+            }
+        });
+
+        cobrarMesaButton.setText("Cobrar mesa");
+        cobrarMesaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cobrarMesaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(abrirMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cerrarMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pedidosTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(176, 176, 176))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(totalMesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalMesaField, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cobrarMesaButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(agregarPedidoButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(verEditarPedidoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(eliminarPedidoButton))
+                                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(numMesaTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(capacidadMesaTitleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(numMesaLabel)
+                                        .addComponent(capacidadMesaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numMesaTitleLabel)
+                    .addComponent(numMesaLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(capacidadMesaTitleLabel)
+                    .addComponent(capacidadMesaLabel))
+                .addGap(18, 18, 18)
+                .addComponent(abrirMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(pedidosTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(verEditarPedidoButton)
+                    .addComponent(eliminarPedidoButton)
+                    .addComponent(agregarPedidoButton))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalMesaLabel)
+                    .addComponent(totalMesaField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cobrarMesaButton))
+                .addGap(26, 26, 26)
+                .addComponent(cerrarMesaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void agregarPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarPedidoButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_agregarPedidoButtonActionPerformed
+
+    private void abrirMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirMesaButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_abrirMesaButtonActionPerformed
+
+    private void cerrarMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarMesaButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cerrarMesaButtonActionPerformed
+
+    private void cobrarMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cobrarMesaButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cobrarMesaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +218,20 @@ public class MesaVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton abrirMesaButton;
+    private javax.swing.JButton agregarPedidoButton;
+    private javax.swing.JLabel capacidadMesaLabel;
+    private javax.swing.JLabel capacidadMesaTitleLabel;
+    private javax.swing.JButton cerrarMesaButton;
+    private javax.swing.JButton cobrarMesaButton;
+    private javax.swing.JButton eliminarPedidoButton;
+    private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JLabel numMesaLabel;
+    private javax.swing.JLabel numMesaTitleLabel;
+    private javax.swing.JList<String> pedidosList;
+    private javax.swing.JLabel pedidosTitleLabel;
+    private javax.swing.JTextField totalMesaField;
+    private javax.swing.JLabel totalMesaLabel;
+    private javax.swing.JButton verEditarPedidoButton;
     // End of variables declaration//GEN-END:variables
 }
