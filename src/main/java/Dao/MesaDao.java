@@ -12,12 +12,16 @@ import java.util.List;
  * @author Diegolas
  */
 
-
 public interface MesaDao {
     void save(Mesa mesa) throws DaoException;
+
     void update(Mesa mesa) throws DaoException;
+
     void delete(Mesa mesa) throws DaoException;
+
     Mesa getById(int id) throws DaoException;
+
     List<Mesa> getAll() throws DaoException;
-    List<Mesa> getByEstado(String estado) throws DaoException;
+
+    List<Mesa> getByEstado(boolean ocupada) throws DaoException;
 }
