@@ -73,7 +73,7 @@ public class MainFormMesas extends javax.swing.JFrame {
                 buttonProductos(evt);
             }
         });
-        getContentPane().add(GestonMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 90, -1));
+        getContentPane().add(GestonMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 100, -1));
 
         PedidosButton.setText("Pedidos");
         PedidosButton.addActionListener(new java.awt.event.ActionListener() {
@@ -81,7 +81,7 @@ public class MainFormMesas extends javax.swing.JFrame {
                 PedidosButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(PedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 110, -1));
+        getContentPane().add(PedidosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Mesas");

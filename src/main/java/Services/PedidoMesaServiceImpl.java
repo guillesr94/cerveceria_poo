@@ -22,19 +22,9 @@ public  class PedidoMesaServiceImpl implements PedidoMesaService {
      */
     public PedidoMesaServiceImpl(){
      this.dao=PedidoMesaDaoImpl.getInstance(); 
-        
-        
     }
 
- /*   @Override
-    public void save(PedidoMesa Pedido) throws Exception {
-  if(Pedido.getMesa()!=null){
-      dao.save(Pedido);
-  } else {
-      throw new Exception("Debe seleccionarse una mesa antes de guardar el pedido");
-  }
-    }
-*/
+ 
     @Override
     public PedidoMesa GetbyId(int id) throws Exception {
 return dao.getById(id);
@@ -53,7 +43,7 @@ return dao.getById(id);
 
     @Override
     public void delete(int id) throws Exception {
-   PedidoMesa PM=dao.getById(id);
+    PedidoMesa PM=dao.getById(id);
     if(PM!=null){
        dao.delete(PM);
     }else{
@@ -81,3 +71,4 @@ return dao.getById(id);
  
     }
 }
+
