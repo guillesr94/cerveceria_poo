@@ -509,7 +509,7 @@ recalcularSubtotal();
 
         float descuento = 0f;
         if (!discountEdit.getText().isEmpty()) {
-            descuento = Float.parseFloat(discountEdit.getText().replace(",", "."));
+            descuento = Float.parseFloat(discountEdit.getText().trim().replace(",", "."));
         }
         pedido.setDescuento(descuento);
 
@@ -532,10 +532,21 @@ if(prodObj==null ||precioObj==null ||cantidadObj==null){
     continue;
 }
 
-String nombreProducto=prodObj.toString();
-double precio=Double.parseDouble(precioObj.toString().replace(",", "."));
-int cantidad=Integer.parseInt(cantidadObj.toString());
+  String nombreProducto = prodObj.toString().trim();
+  String precioStr = precioObj.toString().trim().replace(",", ".");
+  String cantidadStr = cantidadObj.toString().trim();
 
+  if(nombreProducto.isEmpty()||precioStr.isEmpty()||cantidadStr.isEmpty())continue;
+  double precio=0.0;
+  int cantidad=0;
+        try{
+            precio=Double.parseDouble(precioStr);
+            cantidad=Integer.parseInt(cantidadStr);
+        }catch(NumberFormatException ex){
+            continue;
+        }
+  
+  
 Services.ProductoServicesImpl productoService=new Services.ProductoServicesImpl();
 Entities.Producto producto=productoService.getByNombre(nombreProducto);
 
@@ -600,24 +611,34 @@ for(int j=0;j<model.getColumnCount();j++){
       
     
 
-private void recalcularSubtotal(){
-    javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
-   double subtotal=0.0;
-   for(int i=0;i<model.getRowCount();i++){
-   Object precioObj=model.getValueAt(i,2);
+private void recalcularSubtotal(){ 
+
+    
+    
+javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+ double subtotal=0.0;
+ for(int i=0;i<model.getRowCount();i++){ 
+     Object precioObj=model.getValueAt(i,2);
 Object cantidadObj=model.getValueAt(i,3);
 if (precioObj == null || cantidadObj == null) continue;    
 
+String precioStr=precioObj.toString().trim().replace(",","." );
+String cantStr=cantidadObj.toString().trim();
+
+if(precioStr.isEmpty()||cantStr.isEmpty())continue;
+try{
   double precio = Double.parseDouble(precioObj.toString().replace(",", "."));
     int cantidad=Integer.parseInt(cantidadObj.toString());
     subtotal+=precio*cantidad;
+}catch(NumberFormatException e){
+    continue;
 }
 
 SubtotalEdit.setText(String.format("%.2f", subtotal));
  aplicarDescuento();   
 }
 
-
+}
 
     private void aplicarDescuento() {
  try{       
