@@ -1,3 +1,4 @@
+
 /*<
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -91,7 +92,6 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         AgregarProductosButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         PedidoTabla = new javax.swing.JTable();
-        ConfirmPedido = new javax.swing.JButton();
         EliminarProducto = new javax.swing.JButton();
         SubtotalLabel = new javax.swing.JLabel();
         SubtotalEdit = new javax.swing.JTextField();
@@ -105,6 +105,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         TotalLabel = new javax.swing.JLabel();
         GestionMenuButton = new javax.swing.JToggleButton();
         jLabel3 = new javax.swing.JLabel();
+        ConfirmarPedidoButton = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,12 +166,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         });
         jScrollPane3.setViewportView(PedidoTabla);
 
-        ConfirmPedido.setText("Confirmar Pedido");
-        ConfirmPedido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfirmPedidoActionPerformed(evt);
-            }
-        });
+
 
         EliminarProducto.setText("Eliminar Producto");
         EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -217,6 +213,13 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Pedidos");
+
+        ConfirmarPedidoButton.setText("Confirmar Pedido");
+        ConfirmarPedidoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmarPedidoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -268,9 +271,9 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
                             .addComponent(totalEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(EliminarProducto))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(ConfirmPedido)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ConfirmarPedidoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CancelarPedido)
                 .addGap(76, 76, 76))
@@ -335,7 +338,7 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CancelarPedido)
-                    .addComponent(ConfirmPedido))
+                    .addComponent(ConfirmarPedidoButton))
                 .addGap(19, 19, 19))
         );
 
@@ -449,7 +452,7 @@ return;
 if(mesaText!=null && !mesaText.isEmpty()){
 noTable=mesaText;
 }else{
-noTable="Mesas Proximamente";
+noTable="Pedido para delivery";
 
 }
     javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
@@ -496,20 +499,114 @@ recalcularSubtotal();
       
     }//GEN-LAST:event_EliminarProductoActionPerformed
 
+    private void ConfirmarPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+   try {
+        
+        recalcularSubtotal();
+        aplicarDescuento();
+
+       
+        Entities.PedidoMesa pedido = new Entities.PedidoMesa();
+
+
+        float descuento = 0f;
+        if (!discountEdit.getText().isEmpty()) {
+            descuento = Float.parseFloat(discountEdit.getText().trim().replace(",", "."));
+        }
+        pedido.setDescuento(descuento);
+
+
+        pedido.setConceptoDescuento(conceptEdit.getText());
+
+     
+        double total = Double.parseDouble(totalEdit.getText().replace(",", "."));
+        pedido.setTotal(total);
+
+    
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) PedidoTabla.getModel();
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+Object prodObj=model.getValueAt(i,0);
+Object precioObj=model.getValueAt(i, 2);
+Object cantidadObj=model.getValueAt(i,3);
+        
+if(prodObj==null ||precioObj==null ||cantidadObj==null){
+    continue;
+}
+
+  String nombreProducto = prodObj.toString().trim();
+  String precioStr = precioObj.toString().trim().replace(",", ".");
+  String cantidadStr = cantidadObj.toString().trim();
+
+  if(nombreProducto.isEmpty()||precioStr.isEmpty()||cantidadStr.isEmpty())continue;
+  double precio=0.0;
+  int cantidad=0;
+        try{
+            precio=Double.parseDouble(precioStr);
+            cantidad=Integer.parseInt(cantidadStr);
+        }catch(NumberFormatException ex){
+            continue;
+        }
+  
+  
+Services.ProductoServicesImpl productoService=new Services.ProductoServicesImpl();
+Entities.Producto producto=productoService.getByNombre(nombreProducto);
+
+
+Entities.DetallePedido detalle=new Entities.DetallePedido(producto,cantidad);
+pedido.guardarDetalle(detalle);
+
+
+        }
+
+Services.PedidoMesaServiceImpl service=new Services.PedidoMesaServiceImpl();
+service.save(pedido);
+        
+        
+        JOptionPane.showMessageDialog(this, " Pedido guardado correctamente");
+for(int i=0;i<model.getRowCount();i++){
+for(int j=0;j<model.getColumnCount();j++){
+    model.setValueAt("", i,j);
+}    
+    
+}
+        
+        
+ SubtotalEdit.setText("0.00");
+ discountEdit.setText("");
+ conceptEdit.setText("");
+ totalEdit.setText("0.00");
+ CantidadEdit.setText("");
+ ListaProd.clearSelection();
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Error al confirmar el pedido: " + e.getMessage());
+        e.printStackTrace();
+    }  
+ 
+    }                                                     
+
     private void CancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {                                               
       
 
            javax.swing.table.DefaultTableModel model=
                    (javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
-                           model.setRowCount(0);
+                          
+       
+           for(int i=0;i<model.getRowCount();i++){
+for(int j=0;j<model.getColumnCount();j++){
+    model.setValueAt("", i,j);
+}    
+    
+}
                            
-           SubtotalEdit.setText("0.00");
-        discountEdit.setText("");
-        conceptEdit.setText("");
-        totalEdit.setText("0.00");
-        CantidadEdit.setText("");
-        SelectorCategoria.setSelectedIndex(0);
-        ListaProd.clearSelection();
+   SubtotalEdit.setText("0.00");
+   discountEdit.setText("");
+   conceptEdit.setText("");
+   totalEdit.setText("0.00");
+   CantidadEdit.setText("");
+   SelectorCategoria.setSelectedIndex(0);
+   ListaProd.clearSelection();
            
        } 
         
@@ -528,21 +625,33 @@ recalcularSubtotal();
     }
     
 
-private void recalcularSubtotal(){
-    javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
-   double subtotal=0.0;
-   for(int i=0;i<model.getRowCount();i++){
-   Object precioObj=model.getValueAt(i,2);
+private void recalcularSubtotal(){ 
+
+    
+    
+javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
+ double subtotal=0.0;
+ for(int i=0;i<model.getRowCount();i++){ 
+     Object precioObj=model.getValueAt(i,2);
 Object cantidadObj=model.getValueAt(i,3);
 if (precioObj == null || cantidadObj == null) continue;    
 
+String precioStr=precioObj.toString().trim().replace(",","." );
+String cantStr=cantidadObj.toString().trim();
+
+if(precioStr.isEmpty()||cantStr.isEmpty())continue;
+try{
   double precio = Double.parseDouble(precioObj.toString().replace(",", "."));
     int cantidad=Integer.parseInt(cantidadObj.toString());
     subtotal+=precio*cantidad;
+}catch(NumberFormatException e){
+    continue;
 }
 
 SubtotalEdit.setText(String.format("%.2f", subtotal));
  aplicarDescuento();   
+}
+
 }
 
     private void aplicarDescuento() {
@@ -592,23 +701,21 @@ totalEdit.setText(String.format("%.2f", total));
 javax.swing.JOptionPane.showMessageDialog(this,"Error en el descuento aplicado");
  }
     
+}
     
     
     
     
-    }
 
 
 
 
-
- 
-
-
-
+        
+        
+        
    
 
-
+   
 
     /**
      * @param args the command line arguments
@@ -651,7 +758,7 @@ javax.swing.JOptionPane.showMessageDialog(this,"Error en el descuento aplicado")
     private javax.swing.JTextField CantidadEdit;
     private javax.swing.JLabel CantidadLabel;
     private javax.swing.JLabel ConceptLabel;
-    private javax.swing.JButton ConfirmPedido;
+    private javax.swing.JButton ConfirmarPedidoButton;
     private javax.swing.JLabel DiscountLabel;
     private javax.swing.JButton EliminarProducto;
     private javax.swing.JToggleButton GestionMenuButton;
@@ -674,8 +781,4 @@ javax.swing.JOptionPane.showMessageDialog(this,"Error en el descuento aplicado")
     private javax.swing.JTextField totalEdit;
     // End of variables declaration//GEN-END:variables
 
-    
-    
-    
-    
-}
+} 

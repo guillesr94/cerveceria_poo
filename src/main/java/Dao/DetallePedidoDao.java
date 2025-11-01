@@ -13,4 +13,7 @@ import java.util.List;
  */
 public interface DetallePedidoDao extends Dao<DetallePedido> {
 
+    
+  List<DetallePedido>getByPedido(int idPedido)throws DaoException;  
+    
 }

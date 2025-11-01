@@ -37,16 +37,9 @@ public class ProductoDaoImpl implements ProductoDao {
         
         return instance;
     }
-
-    @Override
-    public List<Producto> getByNombre(String nombre) throws DaoException {
-        try{
-   return em.createQuery("Select p FROM Producto p WHERE p.nombre LIKE :nombre",Producto.class)
-    .setParameter("nombre","%"+nombre+"%").getResultList();
-           }catch(Exception e){
-               throw new DaoException("Error al obtener los productos por nombre",e);
-           }
-    }
+ 
+  
+   
     @Override
     public void save(Producto data) throws DaoException {
         try {
@@ -90,6 +83,7 @@ public class ProductoDaoImpl implements ProductoDao {
 
     }
          
+  
     
 
     @Override
@@ -131,6 +125,21 @@ public void delete(Producto data) throws DaoException {
         throw new DaoException("No se pueden obtener los productos de la categoria",e);
       
           }          }
+
+    @Override
+    public Producto getByNombre(String nombre) throws DaoException {
+   
+
+        try{
+   return em.createQuery("Select p FROM Producto p WHERE p.nombreProducto LIKE :nombre",Producto.class)
+    .setParameter("nombre",nombre)
+           .getSingleResult();
+           }catch(Exception e){
+               throw new DaoException("Error al obtener los productos por nombre",e);
+           }
+           
+ 
+    }
     
     
     

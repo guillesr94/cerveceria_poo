@@ -98,5 +98,13 @@ public static DetallePedidoDaoImpl getInstance(){
     }
     
     }
-}
 
+    @Override
+    public List<DetallePedido> getByPedido(int idPedido) throws DaoException {
+ return em.createQuery(
+ "SELECT d FROM DetalleXPedido d WHERE d.pedido.idPedido=:id ",DetallePedido.class)
+         .setParameter("id", idPedido).getResultList();
+        
+        }
+
+}

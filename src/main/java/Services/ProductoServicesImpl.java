@@ -87,6 +87,14 @@ productoDao.save(Producto);
    return  productoDao.getByCategoria(idCategoria);
     }
 
+    @Override
+    public Producto getByNombre(String nombre) throws Exception {
+   
+    Producto producto=productoDao.getByNombre(nombre);
+    return producto;
+
+}
+
+}
 
     
-}
