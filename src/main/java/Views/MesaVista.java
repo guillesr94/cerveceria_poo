@@ -4,6 +4,7 @@
  */
 package Views;
 
+
 /**
  *
  * @author Diegolas
@@ -12,6 +13,15 @@ public class MesaVista extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger
             .getLogger(MesaVista.class.getName());
+    
+    private Entities.Mesa mesa;
+
+    public void setMesa(Entities.Mesa mesa) {
+        this.mesa = mesa;
+        numMesaLabel.setText(String.valueOf(mesa.getNumero()));
+        capacidadMesaLabel.setText(String.valueOf(mesa.getCapacidad()));
+        totalMesaField.setText("0");
+    }
 
     /**
      * Creates new form MesaVista

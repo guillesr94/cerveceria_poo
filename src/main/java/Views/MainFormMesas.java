@@ -4,7 +4,17 @@
  */
 package Views;
 
-import Models.MesaUI;
+import Entities.Mesa;
+import Dao.MesaDao;
+import Models.MesaDaoImpl;
+import java.awt.GridLayout;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 
 /**
  *
@@ -12,22 +22,21 @@ import Models.MesaUI;
  */
 public class MainFormMesas extends javax.swing.JFrame {
 
-    private MesaUI mesa1, mesa2, mesa3, mesa4;
+    // private MesaUI mesa1, mesa2, mesa3, mesa4;
+    
+    private MesaDao mesaDao = MesaDaoImpl.getInstance();
+    private Map<JButton, Mesa> mesasMap = new HashMap<>();
+    private JPanel panelMesas;
+
 
     public MainFormMesas() {
-
         initComponents();
         setLocationRelativeTo(null);
-        mesa1 = new MesaUI(" 1", Mesa1Button);
-        mesa2 = new MesaUI(" 2", Mesa2Button);
-        mesa3 = new MesaUI(" 3", Mesa3Button);
-        mesa4 = new MesaUI(" 4", Mesa4Button);
 
-        mesa1.agregarProducto("Asado");
-        mesa2.agregarProducto("Pizza");
-
-        mesa2.agregarProducto("Helado");
+        
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -36,43 +45,27 @@ public class MainFormMesas extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated
-    // Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Mesa1Button = new javax.swing.JButton();
-        Mesa2Button = new javax.swing.JButton();
-        Mesa3Button = new javax.swing.JButton();
-        Mesa4Button = new javax.swing.JButton();
         GestonMenuButton = new javax.swing.JButton();
         PedidosButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0),
-                new java.awt.Dimension(25, 32767));
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0),
-                new java.awt.Dimension(25, 32767));
-        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0),
-                new java.awt.Dimension(25, 32767));
-        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0),
-                new java.awt.Dimension(25, 32767));
-        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 25), new java.awt.Dimension(0, 25),
-                new java.awt.Dimension(32767, 25));
-        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 25), new java.awt.Dimension(0, 25),
-                new java.awt.Dimension(32767, 25));
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 0), new java.awt.Dimension(25, 32767));
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 25), new java.awt.Dimension(0, 25), new java.awt.Dimension(32767, 25));
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 25), new java.awt.Dimension(0, 25), new java.awt.Dimension(32767, 25));
+        mesa3Button = new javax.swing.JButton();
+        mesa1Button = new javax.swing.JButton();
+        mesa2Button = new javax.swing.JButton();
+        mesa4Button = new javax.swing.JButton();
+        mesa5Button = new javax.swing.JButton();
+        mesa6Button = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Mesa1Button.setText("Mesa 1");
-        getContentPane().add(Mesa1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, 60));
-
-        Mesa2Button.setText("Mesa 2");
-        getContentPane().add(Mesa2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, -1, 60));
-
-        Mesa3Button.setText("Mesa 3");
-        getContentPane().add(Mesa3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, -1, 60));
-
-        Mesa4Button.setText("Mesa 4");
-        getContentPane().add(Mesa4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, 60));
 
         GestonMenuButton.setText("Gestion Menu");
         GestonMenuButton.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +85,7 @@ public class MainFormMesas extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Mesas");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 70, -1, -1));
         getContentPane().add(filler1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
         getContentPane().add(filler2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
         getContentPane().add(filler3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
@@ -100,8 +93,44 @@ public class MainFormMesas extends javax.swing.JFrame {
         getContentPane().add(filler5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
         getContentPane().add(filler6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, 30));
 
+        mesa3Button.setText("Mesa 3");
+        getContentPane().add(mesa3Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 80, 70));
+
+        mesa1Button.setText("Mesa 1");
+        mesa1Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesa1ButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(mesa1Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 80, 70));
+
+        mesa2Button.setText("Mesa 2");
+        getContentPane().add(mesa2Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 80, 70));
+
+        mesa4Button.setText("Mesa 4");
+        getContentPane().add(mesa4Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 80, 70));
+
+        mesa5Button.setText("Mesa 5");
+        getContentPane().add(mesa5Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 80, 70));
+
+        mesa6Button.setText("Mesa 6");
+        mesa6Button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesa6ButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(mesa6Button, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 220, 80, 70));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void mesa1ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesa1ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesa1ButtonActionPerformed
+
+    private void mesa6ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesa6ButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesa6ButtonActionPerformed
 
     private void GestonMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_GestonMenuButtonActionPerformed
         GestionMenu ventanaGestionMenu = new GestionMenu();
@@ -166,10 +195,6 @@ public class MainFormMesas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton GestonMenuButton;
-    private javax.swing.JButton Mesa1Button;
-    private javax.swing.JButton Mesa2Button;
-    private javax.swing.JButton Mesa3Button;
-    private javax.swing.JButton Mesa4Button;
     private javax.swing.JButton PedidosButton;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
@@ -178,5 +203,11 @@ public class MainFormMesas extends javax.swing.JFrame {
     private javax.swing.Box.Filler filler5;
     private javax.swing.Box.Filler filler6;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton mesa1Button;
+    private javax.swing.JButton mesa2Button;
+    private javax.swing.JButton mesa3Button;
+    private javax.swing.JButton mesa4Button;
+    private javax.swing.JButton mesa5Button;
+    private javax.swing.JButton mesa6Button;
     // End of variables declaration//GEN-END:variables
 }
