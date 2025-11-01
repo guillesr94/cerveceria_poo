@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
+
 import Entities.Mesa;
 import javax.swing.*;
 import java.util.logging.Logger;
@@ -21,6 +22,16 @@ public class MesaVista extends javax.swing.JDialog {
         numMesaLabel.setText(String.valueOf(mesa.getNumero()));
         capacidadMesaLabel.setText(String.valueOf(mesa.getCapacidad()));
         totalMesaField.setText("0");
+
+        if (mesa.isOcupada()) {
+
+            setControlesActivos(true);
+            abrirMesaButton.setEnabled(false);
+        } else {
+
+            setControlesActivos(false);
+            abrirMesaButton.setEnabled(true);
+        }
     }
 
     public MesaVista(java.awt.Frame parent, boolean modal) {
@@ -29,14 +40,28 @@ public class MesaVista extends javax.swing.JDialog {
         super.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setLocationRelativeTo(parent);
     }
+
+    private void setControlesActivos(boolean activos) {
+        agregarPedidoButton.setEnabled(activos);
+        verEditarPedidoButton.setEnabled(activos);
+        eliminarPedidoButton.setEnabled(activos);
+        pedidosList.setEnabled(activos);
+        totalMesaField.setEnabled(activos);
+        cobrarMesaButton.setEnabled(activos);
+        cerrarMesaButton.setEnabled(activos);
+    }
     
-    /**
-     * Creates new form MesaVista
-     */
+    private void abrirMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    mesa.setOcupada(true);          
+    setControlesActivos(true);      
+    abrirMesaButton.setEnabled(false); 
+}
     
-    /* public MesaVista() {
-        initComponents();
-    }*/
+    private void cerrarMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    mesa.setOcupada(false);         
+    setControlesActivos(false);     
+    abrirMesaButton.setEnabled(true);
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,13 +225,6 @@ public class MesaVista extends javax.swing.JDialog {
         // TODO add your handling code here:
     }// GEN-LAST:event_agregarPedidoButtonActionPerformed
 
-    private void abrirMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_abrirMesaButtonActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_abrirMesaButtonActionPerformed
-
-    private void cerrarMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cerrarMesaButtonActionPerformed
-        // TODO add your handling code here:
-    }// GEN-LAST:event_cerrarMesaButtonActionPerformed
 
     private void cobrarMesaButtonActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_cobrarMesaButtonActionPerformed
         // TODO add your handling code here:
@@ -239,9 +257,9 @@ public class MesaVista extends javax.swing.JDialog {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-    MesaVista dialog = new MesaVista(null, true); // null = no tiene padre
-    dialog.setVisible(true);
-});
+            MesaVista dialog = new MesaVista(null, true); // null = no tiene padre
+            dialog.setVisible(true);
+        });
 
     }
 
