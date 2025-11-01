@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 package Models;
 
 import Dao.DaoException;
@@ -151,4 +150,24 @@ public class MesaDaoImpl implements MesaDao {
             }
         }
     }
+
+    @Override
+    public Mesa getByNumero(int numero) throws DaoException {
+        EntityManager em = null;
+        try {
+            em = emf.createEntityManager();
+            List<Mesa> resultado = em.createQuery("SELECT m FROM Mesa m WHERE m.numeroMesa = :numero", Mesa.class)
+                    .setParameter("numero", numero)
+                    .getResultList();
+
+            return resultado.isEmpty() ? null : resultado.get(0);
+        } catch (Exception e) {
+            throw new DaoException("Error al obtener mesa por numero", e);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }
+
 }

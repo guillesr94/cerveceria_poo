@@ -17,10 +17,10 @@ public class Mesa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idMesa;
 
     @Column(nullable = false, unique = true)
-    private int numero;
+    private int numeroMesa;
 
     @Column(nullable = false)
     private int capacidad;
@@ -32,25 +32,25 @@ public class Mesa {
     }
 
     public Mesa(int numero, int capacidad) {
-        this.numero = numero;
+        this.numeroMesa = numero;
         this.capacidad = capacidad;
         this.ocupada = false;
     }
 
     public Long getId() {
-        return id;
+        return idMesa;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.idMesa = id;
     }
 
     public int getNumero() {
-        return numero;
+        return numeroMesa;
     }
 
     public void setNumero(int numero) {
-        this.numero = numero;
+        this.numeroMesa = numero;
     }
 
     public int getCapacidad() {

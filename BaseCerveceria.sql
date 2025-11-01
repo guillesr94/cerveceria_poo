@@ -5,7 +5,8 @@ use Restaurante;
 create table if not exists Mesa(
 idMesa Int auto_increment primary key,
 numeroMesa INT NOT NULL UNIQUE,
-    capacidad INT NOT NULL  
+    capacidad INT NOT NULL,  
+ocupada TINYINT(1) NOT NULL
 );
  
  CREATE TABLE if not exists Categoria(

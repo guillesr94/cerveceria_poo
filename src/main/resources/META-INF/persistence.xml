@@ -9,6 +9,7 @@
         <class>Entities.Producto</class>
         <class>Entities.DetallePedido</class>
         <class>Entities.PedidoMesa</class>
+        <class>Entities.Mesa</class>
         <class>Entities.CategoriaProducto</class>
 
         <properties>

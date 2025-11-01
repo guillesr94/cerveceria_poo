@@ -24,4 +24,6 @@ public interface MesaDao {
     List<Mesa> getAll() throws DaoException;
 
     List<Mesa> getByEstado(boolean ocupada) throws DaoException;
+    
+    Mesa getByNumero(int numero) throws DaoException;
 }

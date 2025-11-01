@@ -4,17 +4,12 @@
  */
 package Views;
 
+import Dao.DaoException;
 import Entities.Mesa;
 import Dao.MesaDao;
 import Models.MesaDaoImpl;
-import java.awt.GridLayout;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,21 +18,59 @@ import javax.swing.JPanel;
 public class MainFormMesas extends javax.swing.JFrame {
 
     // private MesaUI mesa1, mesa2, mesa3, mesa4;
-    
     private MesaDao mesaDao = MesaDaoImpl.getInstance();
-    private Map<JButton, Mesa> mesasMap = new HashMap<>();
-    private JPanel panelMesas;
+
+    public MainFormMesas() {
+        initComponents();
+        setLocationRelativeTo(null);
+
+        // Asignar acción a cada botón
+        asignarAccionMesa(mesa1Button, 1);
+        asignarAccionMesa(mesa2Button, 2);
+        asignarAccionMesa(mesa3Button, 3);
+        asignarAccionMesa(mesa4Button, 4);
+        asignarAccionMesa(mesa5Button, 5);
+        asignarAccionMesa(mesa6Button, 6);
+    }
+
+    private void asignarAccionMesa(JButton boton, int numeroMesa) {
+        boton.addActionListener(e -> {
+            try {
+                Mesa mesa = mesaDao.getByNumero(numeroMesa);
+                if (mesa == null) {
+
+                    mesa = new Mesa(numeroMesa, 4);
+                    mesaDao.save(mesa);
+                }
+
+                abrirMesaVista(mesa);
+
+            } catch (DaoException ex) {
+                JOptionPane.showMessageDialog(this,
+                        "Error al cargar la mesa: " + ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+    }
+
+    private void abrirMesaVista(Mesa mesa) {
+        MesaVista vista = new MesaVista(this, true);
+        vista.setMesa(mesa);
+        vista.pack();
+        vista.setLocationRelativeTo(this);
+        vista.setVisible(true);
+    }
 
 
+    /*
     public MainFormMesas() {
         initComponents();
         setLocationRelativeTo(null);
 
         
     }
-
-
-
+    
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
