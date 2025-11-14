@@ -13,7 +13,7 @@ public class Main{
     
     public static void main(String[]args){
         
-        
+     /*   
         ProductoDao dao = ProductoDaoImpl.getInstance();
 
         // Crear un producto
@@ -43,7 +43,7 @@ public class Main{
             System.err.println("Error listando productos: " + e.getMessage());
             e.printStackTrace();
         }
-   
+   */
         
         java.awt.EventQueue.invokeLater(() -> {
             new MainFormMesas().setVisible(true);

@@ -11,6 +11,7 @@ import Services.CategoriaProductoServiceImpl;
 import Services.ProductoServicesImpl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -166,7 +167,6 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         });
         jScrollPane3.setViewportView(PedidoTabla);
 
-
         EliminarProducto.setText("Eliminar Producto");
         EliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,6 +200,8 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
         DiscountLabel.setText("Descuento(en %):");
 
         ConceptLabel.setText("Concepto Descuento:");
+
+        totalEdit.setEditable(false);
 
         TotalLabel.setText("Total:");
 
@@ -343,7 +345,54 @@ discountEdit.getDocument().addDocumentListener(new DocumentListener(){
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void limpiarVista(){
+    DefaultTableModel model=(DefaultTableModel)PedidoTabla.getModel();
+    model.setRowCount(0);
+    SubtotalEdit.setText("0.00");
+    discountEdit.setText("");
+    conceptEdit.setText("");
+    totalEdit.setText("");
+    CantidadEdit.setText("");
+    ListaProd.clearSelection();
+  
+    
+    
+}
+    
+private List<Entities.DetallePedido>construirDetalle() throws Exception{
+    List<Entities.DetallePedido> detalles= new ArrayList<>();
+    DefaultTableModel model=(DefaultTableModel)PedidoTabla.getModel();
+    ProductoServicesImpl productoService=new ProductoServicesImpl();
+    
+     for(int i=0;i<model.getRowCount();i++){ 
+     Object prodObj=model.getValueAt(i,0);
+Object cantidadObj=model.getValueAt(i,3);
+if (prodObj == null || cantidadObj == null) continue;    
 
+String nombre=prodObj.toString().trim();
+String cantStr=cantidadObj.toString().trim();
+
+if(nombre.isEmpty()||cantStr.isEmpty())continue;
+int cantidad;
+try{
+ cantidad=Integer.parseInt(cantStr);
+
+
+}catch(NumberFormatException e){
+    continue;
+}
+    
+ Entities.Producto producto=productoService.getByNombre(nombre);
+ if(producto==null)continue;
+ 
+ detalles.add(new Entities.DetallePedido(producto,cantidad));
+    
+    
+}
+return detalles;
+}
+
+    
     private void CargarCategorias(){
      try{
          CategoriaProductoServiceImpl categoriaService =new CategoriaProductoServiceImpl();
@@ -421,7 +470,7 @@ private void CargarProductos(String Categoria){
     }//GEN-LAST:event_GestionMesaButtonActionPerformed
 
     private void buttonProductos(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonProductos
-     ProductosVista ventanaProducto = new ProductosVista();
+    ProductosVista ventanaProducto = new ProductosVista();
     ventanaProducto.pack();
     ventanaProducto.setLocationRelativeTo(this); // Centrada respecto a esta ventana
     ventanaProducto.setVisible(true);
@@ -501,90 +550,40 @@ recalcularSubtotal();
     private void ConfirmarPedidoButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                      
    try {
         
-        recalcularSubtotal();
-        aplicarDescuento();
+       ;
+  float descuento=0;
+  
+  if(!discountEdit.getText().isEmpty()){
+      descuento=Float.parseFloat(discountEdit.getText().trim().replace(",", "."));
+  }
+  String concepto=conceptEdit.getText().trim();
+ double total=Double.parseDouble(totalEdit.getText().trim().replace(",","."));
 
+ List<Entities.DetallePedido>detalles=construirDetalle();
+ Services.PedidoMesaServiceImpl service=new Services.PedidoMesaServiceImpl();
+ service.guardarPedido(detalles, descuento, concepto, total);
+
+
+JOptionPane.showMessageDialog(this,"Pedido guardado correctamente");
+
+limpiarVista();
+   }catch(Exception e){
+       JOptionPane.showMessageDialog(this,"error al confirmar el pedido:"+e.getMessage());
        
-        Entities.PedidoMesa pedido = new Entities.PedidoMesa();
-
-
-        float descuento = 0f;
-        if (!discountEdit.getText().isEmpty()) {
-            descuento = Float.parseFloat(discountEdit.getText().trim().replace(",", "."));
-        }
-        pedido.setDescuento(descuento);
-
-
-        pedido.setConceptoDescuento(conceptEdit.getText());
-
-     
-        double total = Double.parseDouble(totalEdit.getText().replace(",", "."));
-        pedido.setTotal(total);
-
-    
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) PedidoTabla.getModel();
-
-        for (int i = 0; i < model.getRowCount(); i++) {
-Object prodObj=model.getValueAt(i,0);
-Object precioObj=model.getValueAt(i, 2);
-Object cantidadObj=model.getValueAt(i,3);
-        
-if(prodObj==null ||precioObj==null ||cantidadObj==null){
-    continue;
-}
-
-  String nombreProducto = prodObj.toString().trim();
-  String precioStr = precioObj.toString().trim().replace(",", ".");
-  String cantidadStr = cantidadObj.toString().trim();
-
-  if(nombreProducto.isEmpty()||precioStr.isEmpty()||cantidadStr.isEmpty())continue;
-  double precio=0.0;
-  int cantidad=0;
-        try{
-            precio=Double.parseDouble(precioStr);
-            cantidad=Integer.parseInt(cantidadStr);
-        }catch(NumberFormatException ex){
-            continue;
-        }
-  
-  
-Services.ProductoServicesImpl productoService=new Services.ProductoServicesImpl();
-Entities.Producto producto=productoService.getByNombre(nombreProducto);
-
-
-Entities.DetallePedido detalle=new Entities.DetallePedido(producto,cantidad);
-pedido.guardarDetalle(detalle);
-
-
-        }
-
-Services.PedidoMesaServiceImpl service=new Services.PedidoMesaServiceImpl();
-service.save(pedido);
-        
-        
-        JOptionPane.showMessageDialog(this, " Pedido guardado correctamente");
-for(int i=0;i<model.getRowCount();i++){
-for(int j=0;j<model.getColumnCount();j++){
-    model.setValueAt("", i,j);
-}    
-    
-}
-        
-        
- SubtotalEdit.setText("0.00");
- discountEdit.setText("");
- conceptEdit.setText("");
- totalEdit.setText("0.00");
- CantidadEdit.setText("");
- ListaProd.clearSelection();
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error al confirmar el pedido: " + e.getMessage());
-        e.printStackTrace();
-    }  
+   }
+       
  
     }                                                     
 
+   
+    
+    
+    
+    
+    
+    
+    
+    
     private void CancelarPedidoActionPerformed(java.awt.event.ActionEvent evt) {                                               
       
 
@@ -598,90 +597,54 @@ for(int j=0;j<model.getColumnCount();j++){
 }    
     
 }
-                           
-   SubtotalEdit.setText("0.00");
-   discountEdit.setText("");
-   conceptEdit.setText("");
-   totalEdit.setText("0.00");
-   CantidadEdit.setText("");
-   SelectorCategoria.setSelectedIndex(0);
-   ListaProd.clearSelection();
-           
+ limpiarVista();                          
+        
        } 
         
    
 
 private void recalcularSubtotal(){ 
-
-    
-    
-javax.swing.table.DefaultTableModel model=(javax.swing.table.DefaultTableModel)PedidoTabla.getModel();
- double subtotal=0.0;
- for(int i=0;i<model.getRowCount();i++){ 
-     Object precioObj=model.getValueAt(i,2);
-Object cantidadObj=model.getValueAt(i,3);
-if (precioObj == null || cantidadObj == null) continue;    
-
-String precioStr=precioObj.toString().trim().replace(",","." );
-String cantStr=cantidadObj.toString().trim();
-
-if(precioStr.isEmpty()||cantStr.isEmpty())continue;
 try{
-  double precio = Double.parseDouble(precioObj.toString().replace(",", "."));
-    int cantidad=Integer.parseInt(cantidadObj.toString());
-    subtotal+=precio*cantidad;
-}catch(NumberFormatException e){
-    continue;
-}
+    Services.PedidoMesaServiceImpl service= new Services.PedidoMesaServiceImpl();
+List<Entities.DetallePedido>detalles=construirDetalle();
+
+double subtotal=service.calcularSubtotal(detalles);
+    
+    
 
 SubtotalEdit.setText(String.format("%.2f", subtotal));
  aplicarDescuento();   
+}catch(Exception e){
+    JOptionPane.showMessageDialog(this, "Error al reclacular subtotal" +e.getMessage());
 }
 
 }
 
     private void aplicarDescuento() {
  try{       
-     conceptEdit.getText();
- 
-String getDescuento=discountEdit.getText();
-String getSubtotal=SubtotalEdit.getText();
-double subtotal=0.0;
-double descuento=0.0;
-double total=0.0;
-
-if (getSubtotal !=null && !getSubtotal.isEmpty())
-subtotal=Double.parseDouble(getSubtotal.replace(",","."));
      
-if(getDescuento!=null && !getDescuento.isEmpty() ){
-descuento=Double.parseDouble(getDescuento.replace(",","."));
+double subtotal=0.0;
+float descuento=0.0f;
+
+
+if (!SubtotalEdit.getText().isEmpty())
+subtotal=Double.parseDouble(SubtotalEdit.getText().replace(",","."));
+     
+if(!discountEdit.getText().isEmpty() ){
+descuento=Float.parseFloat(discountEdit.getText().replace(",","."));
     }                                                
-
-if(descuento<0 || descuento>100 ){
-conceptEdit.setText("Descuento no valido ");
-total=subtotal;
-}else{
-    conceptEdit.setText("");
-total=subtotal-(subtotal*(descuento/100));
-
-if(descuento==0||getDescuento.isEmpty()){
- conceptEdit.setText("No aplica descuento");
-total=subtotal   ;
-    
-}
-
-if(conceptEdit.getText().isEmpty()) 
-conceptEdit.setText(" varios ");
-
-
-}
-if(getDescuento.isEmpty()&& conceptEdit.getText().isEmpty()){
-  total=subtotal;  
-    
-}
-
+Services.PedidoMesaServiceImpl service=new Services.PedidoMesaServiceImpl();
+double total=service.aplicarDescuento(subtotal,descuento);
 
 totalEdit.setText(String.format("%.2f", total));
+
+if(descuento==0||discountEdit.getText().isEmpty()){ 
+conceptEdit.setText(" no aplica descuento");
+
+}else{
+    conceptEdit.setText("varios");
+}
+
 
  }catch(Exception e){
 javax.swing.JOptionPane.showMessageDialog(this,"Error en el descuento aplicado");
