@@ -13,7 +13,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 /**
- *
+ * Esta clase se encarga de guardar los productos ya validados previamente en las otras capas.
  * @author anto_guille
  */
 public class ProductoDaoImpl implements ProductoDao {
@@ -25,8 +25,8 @@ public class ProductoDaoImpl implements ProductoDao {
     private static ProductoDaoImpl instance;
     
    private ProductoDaoImpl() {
-        // Mueve las dos líneas AQUÍ ADENTRO:
-        emf = Persistence.createEntityManagerFactory("poo_cerveceriaPU"); // (Ojo que tu log decía "RestaurantePU" sin guion bajo)
+        
+        emf = Persistence.createEntityManagerFactory("poo_cerveceriaPU"); 
         em = emf.createEntityManager();
     }
     
@@ -137,74 +137,5 @@ public void delete(Producto data) throws DaoException {
            }catch(Exception e){
                throw new DaoException("Error al obtener los productos por nombre",e);
            }
-           
- 
     }
-    
-    
-    
-    
-   
-    }
-    
-    
-    
-
-
-
-/*
-public class PersonaDaoImpl implements PersonaDao {
-    private EntityManagerFactory emf;
-    private EntityManager em;
-    
-    private static PersonaDaoImpl instance;
-    
-    private PersonaDaoImpl() {
-        emf = Persistence.createEntityManagerFactory("PU");
-        em = emf.createEntityManager();
-    }
-    
-    public static PersonaDao getInstance() {
-        if ( instance == null ) {
-            instance = new PersonaDaoImpl();
-        }
-        
-        return instance;
-    }
-
-    @Override
-    public List<Persona> getByApellido(String apellido) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void save(Persona data) throws DaoException {
-        em.getTransaction().begin();
-        em.persist(data);
-        em.getTransaction().commit();
-    }
-
-    @Override
-    public Persona getById(int id) throws DaoException {
-        return em.find(Persona.class, id);
-    }
-
-    @Override
-    public List<Persona> getAll() throws DaoException {
-        String query = "SELECT p FROM Persona p";
-        Query q = em.createQuery(query);
-        return q.getResultList();
-    }
-
-    @Override
-    public void update(Persona data) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(Persona data) throws DaoException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }
-*/
