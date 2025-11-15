@@ -2,6 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
+
 package Services;
 
 import Dao.DaoException;
@@ -13,6 +14,15 @@ import Models.ProductoDaoImpl;
  *
  * @author victo
  */
+
+/**
+ * La interfaz se encarga de la logica de producto.
+ * si las validaciones son correctas llama a productoDao.
+ * Para efectuar los cambios que correspondan en la base de datos
+ * Llamamos a productoDao para que ejecute los cambios
+ * @author anto_guille
+ */
+
 public class ProductoServicesImpl implements ProductoServiceInterface{
 
     private final ProductoDao productoDao;
@@ -52,17 +62,16 @@ productoDao.save(Producto);
         throw new Exception("ID de producto no válido para la actualización.");
     }
     
-    // Validación del Nombre
     if (Producto.getNombre() == null || Producto.getNombre().trim().isEmpty()) {
         throw new Exception("El nombre del producto no puede estar vacío.");
     }
 
-    // Validación de la Categoría
+  
     if (Producto.getCategoria() == null) {
         throw new Exception("Debe seleccionar una categoría para el producto.");
     }
 
-    // Validación del Precio
+    
     if (Producto.getPrecio() <= 0) {
         throw new Exception("El precio debe ser un número positivo.");
     }
@@ -71,7 +80,6 @@ productoDao.save(Producto);
         productoDao.update(Producto);
         
     } catch (DaoException e) {
-        // Manejo de errores de la base de datos (Tu bloque original)
         throw new Exception("Error al actualizar el producto en la base de datos.", e);
     }
     }
@@ -96,5 +104,3 @@ productoDao.save(Producto);
 }
 
 }
-
-    

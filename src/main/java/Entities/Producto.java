@@ -32,10 +32,7 @@ private CategoriaProducto categoria;
    
    @Column(name="precio")
     private float precio;
-  /* @Column(name="stock")
-    private int stock;
-   
-    */
+
 
     public Producto() {
     }
@@ -51,7 +48,7 @@ private CategoriaProducto categoria;
         this.categoria = categoria;
         this.nombreProducto = nombre;
         this.precio = precio;
-    //    this.stock = stock;
+
     }
 
     public CategoriaProducto getCategoria() {
@@ -63,13 +60,6 @@ private CategoriaProducto categoria;
         this.categoria = Categoria;
     }
 
-  /*  public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }*/
 
    
 

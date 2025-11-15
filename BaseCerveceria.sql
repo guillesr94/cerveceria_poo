@@ -58,3 +58,12 @@ create table if not exists CuentaXMesa (
 
 ALTER TABLE Producto DROP COLUMN stock;
 
+INSERT INTO categoria (idCategoria, categoria) VALUES
+(1, 'Entradas'),
+(2, 'Platos Principales'),
+(3, 'Sándwiches'),
+(4, 'Postres'),
+(5, 'Cervezas'),
+(6, 'Vinos'),
+(7, 'Tragos'),
+(8, 'Bebidas sin Alcohol');

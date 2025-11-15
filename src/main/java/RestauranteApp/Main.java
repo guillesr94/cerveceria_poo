@@ -13,6 +13,7 @@ public class Main{
     
     public static void main(String[]args){
         
+
      /*   
         ProductoDao dao = ProductoDaoImpl.getInstance();
 
@@ -44,6 +45,7 @@ public class Main{
             e.printStackTrace();
         }
    */
+
         
         java.awt.EventQueue.invokeLater(() -> {
             new MainFormMesas().setVisible(true);

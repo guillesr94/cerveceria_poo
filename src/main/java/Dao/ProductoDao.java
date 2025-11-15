@@ -16,7 +16,3 @@ public interface ProductoDao extends Dao<Producto>{
     Producto getByNombre(String nombre) throws DaoException;
    List<Producto>getByCategoria(int IdCategoria )throws DaoException;
 }
-/*
-public interface PersonaDao extends Dao<Persona>{
-    public abstract List<Persona> getByApellido(String apellido) throws DaoException;
-}*/
